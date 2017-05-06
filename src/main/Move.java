@@ -2,5 +2,6 @@ package main;
 
 public class Move {
 	private Player player;
-	private int index;
+	private int indexRed;
+	private int indexKolona;
 }
