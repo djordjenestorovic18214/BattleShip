@@ -11,33 +11,37 @@ import javax.swing.JMenu;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
+
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.lang.reflect.Field;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextArea;
 import java.awt.Cursor;
 import javax.swing.JScrollPane;
 import java.awt.CardLayout;
 import javax.swing.border.TitledBorder;
+
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.Toolkit;
 
-public class PlayerGUI {
-
-	private JFrame frmNavalWars;
-	private JMenuBar menuBar;
-	private JMenu mnGame;
-	private JMenu mnHelp;
+@SuppressWarnings("serial")
+public class PlayerGUI extends JFrame{
 	private JPanel panelEast;
 	private JPanel panelCentar;
 	private JPanel panelSouth;
 	private JLabel lblName;
-	private JTextField textField;
+	private JTextField txtName;
 	private static JButton btn11;
 	private static JButton btn12;
 	private static JButton btn13;
@@ -111,17 +115,22 @@ public class PlayerGUI {
 	private JButton btnNextShip;
 
 	private static JButton[] matrica = new JButton[100];
+	private JButton btnNewButton;
+	JTextArea console;
+	private JScrollPane scrollPane;
+	private JMenuBar menuBar;
+	private JMenu mnGame;
+	private JMenu mnHelp;
 	private JMenu mnAbout;
 	private JMenuItem mntmNewGame;
 	private JMenuItem mntmExit;
-	private JMenuItem mntmHowtoplay;
-	private JMenuItem mntmHistoryofbattleships;
-	private JMenuItem mntmAboutDevelopers;
-	private JButton btnNewButton;
-	private JTextArea console;
-	private JScrollPane scrollPane;
+	private JMenuItem mntmHowToPlay;
+	private JMenuItem mntmHistoryOfBattleships;
+	private JMenuItem mntmAboutUs;
 	
-	public void populateTheArray(){
+// 	KAD ZAVRSIMO GUI RADICEMO NA LOGICI
+	
+/*	public void populateTheArray(){
 		Field[] fields = JButton.class.getDeclaredFields();
 		int i=0;
 		
@@ -155,76 +164,42 @@ public class PlayerGUI {
 			}
 			
 		}
-		
-	}
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PlayerGUI window = new PlayerGUI();
-					window.frmNavalWars.setVisible(true);
-					window.populateTheArray();
-					
-					System.out.println(window.elementsInArray());
-				
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
+	 * @param playerName 
 	 */
-	public PlayerGUI() {
-		initialize();
+	public PlayerGUI(String playerName) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PlayerGUI.class.getResource("/resources/iconimage.png")));
+		setJMenuBar(getMenuBar_1());
+		initialize(playerName);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @param playerName 
 	 */
-	private void initialize() {
-		frmNavalWars = new JFrame();
-		frmNavalWars.setFont(new Font("Monospaced", Font.BOLD, 16));
-		frmNavalWars.setTitle("Naval Wars");
-		frmNavalWars.setBounds(100, 100, 468, 384);
-		frmNavalWars.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmNavalWars.setJMenuBar(getMenuBar());
-		frmNavalWars.getContentPane().setLayout(new BorderLayout(0, 0));
-		frmNavalWars.getContentPane().add(getPanelEast(), BorderLayout.EAST);
-		frmNavalWars.getContentPane().add(getPanelCentar(), BorderLayout.CENTER);
-		frmNavalWars.getContentPane().add(getPanelSouth(), BorderLayout.SOUTH);
-	}
-	private JMenuBar getMenuBar() {
-		if (menuBar == null) {
-			menuBar = new JMenuBar();
-			menuBar.add(getMnGame());
-			menuBar.add(getMnHelp());
-			menuBar.add(getMnAbout());
-		}
-		return menuBar;
-	}
-	private JMenu getMnGame() {
-		if (mnGame == null) {
-			mnGame = new JMenu("Game");
-			mnGame.setFont(new Font("Monospaced", Font.BOLD, 12));
-			mnGame.add(getMntmNewGame());
-			mnGame.add(getMntmExit());
-		}
-		return mnGame;
-	}
-	private JMenu getMnHelp() {
-		if (mnHelp == null) {
-			mnHelp = new JMenu("Help");
-			mnHelp.setFont(new Font("Monospaced", Font.BOLD, 12));
-			mnHelp.add(getMntmHowtoplay());
-		}
-		return mnHelp;
+	private void initialize(String playerName) {
+		setResizable(false);
+		setFont(new Font("Monospaced", Font.BOLD, 16));
+		setTitle("Naval Wars");
+		setBounds(100, 100, 460, 390);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		getContentPane().setLayout(new BorderLayout(0, 0));
+		getContentPane().add(getPanelEast(), BorderLayout.EAST);
+		getContentPane().add(getPanelCentar(), BorderLayout.CENTER);
+		getContentPane().add(getPanelSouth(), BorderLayout.SOUTH);
+		txtName.setText(playerName);
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnV);
+		group.add(rdbtnH);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				GUIControler.closeApp();
+			}
+		});
 	}
 	private JPanel getPanelEast() {
 		if (panelEast == null) {
@@ -232,7 +207,7 @@ public class PlayerGUI {
 			panelEast.setPreferredSize(new Dimension(140, 10));
 			panelEast.setLayout(new MigLayout("", "[50px]", "[14px][20px][14px][20px][14px][23px][25px][grow][37px]"));
 			panelEast.add(getLblName(), "cell 0 0,alignx center,growy");
-			panelEast.add(getTextField(), "cell 0 1,alignx center,growy");
+			panelEast.add(getTxtName(), "cell 0 1,alignx center,growy");
 			panelEast.add(getLblIzborBrodova(), "cell 0 2,alignx center,growy");
 			panelEast.add(getCbShipSize(), "cell 0 3");
 			panelEast.add(getLblOrientation(), "cell 0 4,alignx center,growy");
@@ -330,13 +305,13 @@ public class PlayerGUI {
 		}
 		return lblName;
 	}
-	private JTextField getTextField() {
-		if (textField == null) {
-			textField = new JTextField();
-			textField.setEditable(false);
-			textField.setColumns(10);
+	private JTextField getTxtName() {
+		if (txtName == null) {
+			txtName = new JTextField();
+			txtName.setEditable(false);
+			txtName.setColumns(10);
 		}
-		return textField;
+		return txtName;
 	}
 	private JButton getBtn11() {
 		if (btn11 == null) {
@@ -656,6 +631,10 @@ public class PlayerGUI {
 	private JButton getBtn88() {
 		if (btn88 == null) {
 			btn88 = new JButton("");
+			btn88.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				}
+			});
 			btn88.setPreferredSize(new Dimension(33, 33));
 			btn88.setName("btn88");
 		}
@@ -895,6 +874,7 @@ public class PlayerGUI {
 		if (rdbtnV == null) {
 			rdbtnV = new JRadioButton("V");
 			rdbtnV.setFont(new Font("Monospaced", Font.BOLD, 12));
+			rdbtnV.setSelected(true);
 		}
 		return rdbtnV;
 	}
@@ -911,50 +891,6 @@ public class PlayerGUI {
 			btnNextShip.setFont(new Font("Monospaced", Font.BOLD, 12));
 		}
 		return btnNextShip;
-	}
-	private JMenu getMnAbout() {
-		if (mnAbout == null) {
-			mnAbout = new JMenu("About");
-			mnAbout.setFont(new Font("Monospaced", Font.BOLD, 12));
-			mnAbout.add(getMntmHistoryofbattleships());
-			mnAbout.add(getMntmAboutDevelopers());
-		}
-		return mnAbout;
-	}
-	private JMenuItem getMntmNewGame() {
-		if (mntmNewGame == null) {
-			mntmNewGame = new JMenuItem("New Game");
-			mntmNewGame.setFont(new Font("Monospaced", Font.PLAIN, 12));
-		}
-		return mntmNewGame;
-	}
-	private JMenuItem getMntmExit() {
-		if (mntmExit == null) {
-			mntmExit = new JMenuItem("Exit");
-			mntmExit.setFont(new Font("Monospaced", Font.PLAIN, 12));
-		}
-		return mntmExit;
-	}
-	private JMenuItem getMntmHowtoplay() {
-		if (mntmHowtoplay == null) {
-			mntmHowtoplay = new JMenuItem("How To Play");
-			mntmHowtoplay.setFont(new Font("Monospaced", Font.PLAIN, 12));
-		}
-		return mntmHowtoplay;
-	}
-	private JMenuItem getMntmHistoryofbattleships() {
-		if (mntmHistoryofbattleships == null) {
-			mntmHistoryofbattleships = new JMenuItem("History of Battleships");
-			mntmHistoryofbattleships.setFont(new Font("Monospaced", Font.PLAIN, 12));
-		}
-		return mntmHistoryofbattleships;
-	}
-	private JMenuItem getMntmAboutDevelopers() {
-		if (mntmAboutDevelopers == null) {
-			mntmAboutDevelopers = new JMenuItem("About Developers");
-			mntmAboutDevelopers.setFont(new Font("Monospaced", Font.PLAIN, 12));
-		}
-		return mntmAboutDevelopers;
 	}
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
@@ -986,5 +922,100 @@ public class PlayerGUI {
 			scrollPane.setViewportView(getConsole());
 		}
 		return scrollPane;
+	}
+	private JMenuBar getMenuBar_1() {
+		if (menuBar == null) {
+			menuBar = new JMenuBar();
+			menuBar.add(getMnGame());
+			menuBar.add(getMnHelp());
+			menuBar.add(getMnAbout());
+		}
+		return menuBar;
+	}
+	private JMenu getMnGame() {
+		if (mnGame == null) {
+			mnGame = new JMenu("Game");
+			mnGame.setFont(new Font("Monospaced", Font.BOLD, 13));
+			mnGame.add(getMntmNewGame());
+			mnGame.add(getMntmExit());
+		}
+		return mnGame;
+	}
+	private JMenu getMnHelp() {
+		if (mnHelp == null) {
+			mnHelp = new JMenu("Help");
+			mnHelp.setFont(new Font("Monospaced", Font.BOLD, 13));
+			mnHelp.add(getMntmHowToPlay());
+		}
+		return mnHelp;
+	}
+	private JMenu getMnAbout() {
+		if (mnAbout == null) {
+			mnAbout = new JMenu("About");
+			mnAbout.setFont(new Font("Monospaced", Font.BOLD, 13));
+			mnAbout.add(getMntmHistoryOfBattleships());
+			mnAbout.add(getMntmAboutUs());
+		}
+		return mnAbout;
+	}
+	private JMenuItem getMntmNewGame() {
+		if (mntmNewGame == null) {
+			mntmNewGame = new JMenuItem("New Game");
+			mntmNewGame.setFont(new Font("Monospaced", Font.PLAIN, 12));
+		}
+		return mntmNewGame;
+	}
+	private JMenuItem getMntmExit() {
+		if (mntmExit == null) {
+			mntmExit = new JMenuItem("Exit");
+			mntmExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.closeApp();
+				}
+			});
+			mntmExit.setFont(new Font("Monospaced", Font.PLAIN, 12));
+		}
+		return mntmExit;
+	}
+	private JMenuItem getMntmHowToPlay() {
+		if (mntmHowToPlay == null) {
+			mntmHowToPlay = new JMenuItem("How To Play");
+			mntmHowToPlay.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JOptionPane.showMessageDialog(getContentPane(),
+							GUIControler.getTextFromFile("C:\\Users\\HP\\git\\BattleShip-Client-\\src\\resources\\instructions.txt"), "How To Play", JOptionPane.INFORMATION_MESSAGE);
+				}
+			});
+			mntmHowToPlay.setFont(new Font("Monospaced", Font.PLAIN, 12));
+		}
+		return mntmHowToPlay;
+	}
+	private JMenuItem getMntmHistoryOfBattleships() {
+		if (mntmHistoryOfBattleships == null) {
+			mntmHistoryOfBattleships = new JMenuItem("History of Battleships");
+			mntmHistoryOfBattleships.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JOptionPane.showMessageDialog(getContentPane(),
+							GUIControler.getTextFromFile("C:\\Users\\HP\\git\\BattleShip-Client-\\src\\resources\\history.txt"), "History of Battleships", JOptionPane.INFORMATION_MESSAGE);
+				}
+			});
+			mntmHistoryOfBattleships.setFont(new Font("Monospaced", Font.PLAIN, 12));
+		}
+		return mntmHistoryOfBattleships;
+	}
+	private JMenuItem getMntmAboutUs() {
+		if (mntmAboutUs == null) {
+			mntmAboutUs = new JMenuItem("About Us");
+			mntmAboutUs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JOptionPane.showMessageDialog(getContentPane(),
+							"This game was developed by \n•Djordje Nestorovic\n•Matija Milekic\n•Ivan Prlic\n"
+							+ "We are studying at University of Belgrade, Faculty of Organizational Sciences.\n"
+							+ "This game was our project for subject Computer networks and telecommunications.", "About Developers", JOptionPane.INFORMATION_MESSAGE);
+				}
+			});
+			mntmAboutUs.setFont(new Font("Monospaced", Font.PLAIN, 12));
+		}
+		return mntmAboutUs;
 	}
 }
