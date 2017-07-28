@@ -90,4 +90,9 @@ public class GUIControler {
 		return text;
 	}
 
+	public static void readyForTheGame() {
+		frame.setSize(730, 390);
+		consoleMessage("•••The game has started!•••");
+	}
+
 }

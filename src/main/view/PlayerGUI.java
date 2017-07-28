@@ -34,6 +34,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.awt.FlowLayout;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class PlayerGUI extends JFrame{
@@ -127,6 +130,75 @@ public class PlayerGUI extends JFrame{
 	private JMenuItem mntmHowToPlay;
 	private JMenuItem mntmHistoryOfBattleships;
 	private JMenuItem mntmAboutUs;
+	private JLabel lblPlayerName;
+	private JLabel lblVersus;
+	private JLabel lblOpponentName;
+	private JButton btn_11;
+	private JButton btn_12;
+	private JButton btn_13;
+	private JButton btn_14;
+	private JButton btn_15;
+	private JButton btn_16;
+	private JButton btn_17;
+	private JButton btn_18;
+	private JButton btn_21;
+	private JButton btn_22;
+	private JButton btn_23;
+	private JButton btn_24;
+	private JButton btn_25;
+	private JButton btn_26;
+	private JButton btn_27;
+	private JButton btn_28;
+	private JButton btn_31;
+	private JButton btn_32;
+	private JButton btn_33;
+	private JButton btn_34;
+	private JButton btn_35;
+	private JButton btn_36;
+	private JButton btn_37;
+	private JButton btn_38;
+	private JButton btn_41;
+	private JButton btn_42;
+	private JButton btn_43;
+	private JButton btn_44;
+	private JButton btn_45;
+	private JButton btn_46;
+	private JButton btn_47;
+	private JButton btn_48;
+	private JButton btn_51;
+	private JButton btn_52;
+	private JButton btn_53;
+	private JButton btn_54;
+	private JButton btn_55;
+	private JButton btn_56;
+	private JButton btn_57;
+	private JButton btn_58;
+	private JButton btn_61;
+	private JButton btn_62;
+	private JButton btn_63;
+	private JButton btn_64;
+	private JButton btn_65;
+	private JButton btn_66;
+	private JButton btn_67;
+	private JButton btn_68;
+	private JButton btn_71;
+	private JButton btn_72;
+	private JButton btn_73;
+	private JButton btn_74;
+	private JButton btn_75;
+	private JButton btn_76;
+	private JButton btn_77;
+	private JButton btn_78;
+	private JButton btn_81;
+	private JButton btn_82;
+	private JButton btn_83;
+	private JButton btn_84;
+	private JButton btn_85;
+	private JButton btn_86;
+	private JButton btn_87;
+	private JButton btn_88;
+	private JLabel lblLogo;
+	private JLabel lblIcon;
 	
 // 	KAD ZAVRSIMO GUI RADICEMO NA LOGICI
 	
@@ -171,6 +243,7 @@ public class PlayerGUI extends JFrame{
 	 * @param playerName 
 	 */
 	public PlayerGUI(String playerName) {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PlayerGUI.class.getResource("/resources/iconimage.png")));
 		setJMenuBar(getMenuBar_1());
 		initialize(playerName);
@@ -181,10 +254,9 @@ public class PlayerGUI extends JFrame{
 	 * @param playerName 
 	 */
 	private void initialize(String playerName) {
-		setResizable(false);
 		setFont(new Font("Monospaced", Font.BOLD, 16));
 		setTitle("Naval Wars");
-		setBounds(100, 100, 460, 390);
+		setBounds(100, 100, 890, 390);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().add(getPanelEast(), BorderLayout.EAST);
@@ -222,7 +294,7 @@ public class PlayerGUI extends JFrame{
 		if (panelCentar == null) {
 			panelCentar = new JPanel();
 			panelCentar.setPreferredSize(new Dimension(260, 260));
-			panelCentar.setLayout(new MigLayout("", "[][][][][][][][]", "[][][][][][][][]"));
+			panelCentar.setLayout(new MigLayout("", "[][][][][][][][][][][][][][][][][][][]", "[][][][][][][][]"));
 			panelCentar.add(getBtn11(), "cell 0 0");
 			panelCentar.add(getBtn12(), "cell 1 0");
 			panelCentar.add(getBtn13(), "cell 2 0");
@@ -231,6 +303,14 @@ public class PlayerGUI extends JFrame{
 			panelCentar.add(getBtn16(), "cell 5 0");
 			panelCentar.add(getBtn17(), "cell 6 0");
 			panelCentar.add(getBtn18(), "cell 7 0");
+			panelCentar.add(getBtn_11(), "cell 11 0,grow");
+			panelCentar.add(getBtn_12(), "cell 12 0,grow");
+			panelCentar.add(getBtn_13(), "cell 13 0,grow");
+			panelCentar.add(getBtn_14(), "cell 14 0,grow");
+			panelCentar.add(getBtn_15(), "cell 15 0,grow");
+			panelCentar.add(getBtn_16(), "cell 16 0,grow");
+			panelCentar.add(getBtn_17(), "cell 17 0,grow");
+			panelCentar.add(getBtn_18(), "cell 18 0,grow");
 			panelCentar.add(getBtn21(), "cell 0 1");
 			panelCentar.add(getBtn22(), "cell 1 1");
 			panelCentar.add(getBtn23(), "cell 2 1");
@@ -239,6 +319,15 @@ public class PlayerGUI extends JFrame{
 			panelCentar.add(getBtn26(), "cell 5 1");
 			panelCentar.add(getBtn27(), "cell 6 1");
 			panelCentar.add(getBtn28(), "cell 7 1");
+			panelCentar.add(getLblPlayerName(), "cell 9 1,alignx center");
+			panelCentar.add(getBtn_21(), "cell 11 1,grow");
+			panelCentar.add(getBtn_22(), "cell 12 1,grow");
+			panelCentar.add(getBtn_23(), "cell 13 1,grow");
+			panelCentar.add(getBtn_24(), "cell 14 1,grow");
+			panelCentar.add(getBtn_25(), "cell 15 1,grow");
+			panelCentar.add(getBtn_26(), "cell 16 1,grow");
+			panelCentar.add(getBtn_27(), "cell 17 1,grow");
+			panelCentar.add(getBtn_28(), "cell 18 1,grow");
 			panelCentar.add(getBtn31(), "cell 0 2");
 			panelCentar.add(getBtn32(), "cell 1 2");
 			panelCentar.add(getBtn33(), "cell 2 2");
@@ -247,6 +336,15 @@ public class PlayerGUI extends JFrame{
 			panelCentar.add(getBtn36(), "cell 5 2");
 			panelCentar.add(getBtn37(), "cell 6 2");
 			panelCentar.add(getBtn38(), "cell 7 2");
+			panelCentar.add(getLblVersus(), "cell 9 2,alignx center");
+			panelCentar.add(getBtn_31(), "cell 11 2,grow");
+			panelCentar.add(getBtn_32(), "cell 12 2,grow");
+			panelCentar.add(getBtn_33(), "cell 13 2,grow");
+			panelCentar.add(getBtn_34(), "cell 14 2,grow");
+			panelCentar.add(getBtn_35(), "cell 15 2,grow");
+			panelCentar.add(getBtn_36(), "cell 16 2,grow");
+			panelCentar.add(getBtn_37(), "cell 17 2,grow");
+			panelCentar.add(getBtn_38(), "cell 18 2,grow");
 			panelCentar.add(getBtn41(), "cell 0 3");
 			panelCentar.add(getBtn42(), "cell 1 3");
 			panelCentar.add(getBtn43(), "cell 2 3");
@@ -255,6 +353,15 @@ public class PlayerGUI extends JFrame{
 			panelCentar.add(getBtn46(), "cell 5 3");
 			panelCentar.add(getBtn47(), "cell 6 3");
 			panelCentar.add(getBtn48(), "cell 7 3");
+			panelCentar.add(getLblOpponentName(), "cell 9 3,alignx center");
+			panelCentar.add(getBtn_41(), "cell 11 3,grow");
+			panelCentar.add(getBtn_42(), "cell 12 3,grow");
+			panelCentar.add(getBtn_43(), "cell 13 3,grow");
+			panelCentar.add(getBtn_44(), "cell 14 3,grow");
+			panelCentar.add(getBtn_45(), "cell 15 3,grow");
+			panelCentar.add(getBtn_46(), "cell 16 3,grow");
+			panelCentar.add(getBtn_47(), "cell 17 3,grow");
+			panelCentar.add(getBtn_48(), "cell 18 3,grow");
 			panelCentar.add(getBtn51(), "cell 0 4");
 			panelCentar.add(getBtn52(), "cell 1 4");
 			panelCentar.add(getBtn53(), "cell 2 4");
@@ -263,6 +370,15 @@ public class PlayerGUI extends JFrame{
 			panelCentar.add(getBtn56(), "cell 5 4");
 			panelCentar.add(getBtn57(), "cell 6 4");
 			panelCentar.add(getBtn58(), "cell 7 4");
+			panelCentar.add(getLblIcon(), "cell 9 4");
+			panelCentar.add(getBtn_51(), "cell 11 4,grow");
+			panelCentar.add(getBtn_52(), "cell 12 4,grow");
+			panelCentar.add(getBtn_53(), "cell 13 4,grow");
+			panelCentar.add(getBtn_54(), "cell 14 4,grow");
+			panelCentar.add(getBtn_55(), "cell 15 4,grow");
+			panelCentar.add(getBtn_56(), "cell 16 4,grow");
+			panelCentar.add(getBtn_57(), "cell 17 4,grow");
+			panelCentar.add(getBtn_58(), "cell 18 4,grow");
 			panelCentar.add(getBtn61(), "cell 0 5");
 			panelCentar.add(getBtn62(), "cell 1 5");
 			panelCentar.add(getBtn63(), "cell 2 5");
@@ -271,6 +387,14 @@ public class PlayerGUI extends JFrame{
 			panelCentar.add(getBtn66(), "cell 5 5");
 			panelCentar.add(getBtn67(), "cell 6 5");
 			panelCentar.add(getBtn68(), "cell 7 5");
+			panelCentar.add(getBtn_61(), "cell 11 5,grow");
+			panelCentar.add(getBtn_62(), "cell 12 5,grow");
+			panelCentar.add(getBtn_63(), "cell 13 5,grow");
+			panelCentar.add(getBtn_64(), "cell 14 5,grow");
+			panelCentar.add(getBtn_65(), "cell 15 5,grow");
+			panelCentar.add(getBtn_66(), "cell 16 5,grow");
+			panelCentar.add(getBtn_67(), "cell 17 5,grow");
+			panelCentar.add(getBtn_68(), "cell 18 5,grow");
 			panelCentar.add(getBtn71(), "cell 0 6");
 			panelCentar.add(getBtn72(), "cell 1 6");
 			panelCentar.add(getBtn73(), "cell 2 6");
@@ -279,6 +403,14 @@ public class PlayerGUI extends JFrame{
 			panelCentar.add(getBtn76(), "cell 5 6");
 			panelCentar.add(getBtn77(), "cell 6 6");
 			panelCentar.add(getBtn78(), "cell 7 6");
+			panelCentar.add(getBtn_71(), "cell 11 6,grow");
+			panelCentar.add(getBtn_72(), "cell 12 6,growy");
+			panelCentar.add(getBtn_73(), "cell 13 6,growy");
+			panelCentar.add(getBtn_74(), "cell 14 6,growy");
+			panelCentar.add(getBtn_75(), "cell 15 6,growy");
+			panelCentar.add(getBtn_76(), "cell 16 6,grow");
+			panelCentar.add(getBtn_77(), "cell 17 6,growy");
+			panelCentar.add(getBtn_78(), "cell 18 6,growy");
 			panelCentar.add(getBtn81(), "cell 0 7");
 			panelCentar.add(getBtn82(), "cell 1 7");
 			panelCentar.add(getBtn83(), "cell 2 7");
@@ -287,14 +419,23 @@ public class PlayerGUI extends JFrame{
 			panelCentar.add(getBtn86(), "cell 5 7");
 			panelCentar.add(getBtn87(), "cell 6 7");
 			panelCentar.add(getBtn88(), "cell 7 7");
+			panelCentar.add(getBtn_81(), "cell 11 7,growy");
+			panelCentar.add(getBtn_82(), "cell 12 7,growy");
+			panelCentar.add(getBtn_83(), "cell 13 7,growy");
+			panelCentar.add(getBtn_84(), "cell 14 7,growy");
+			panelCentar.add(getBtn_85(), "cell 15 7,growy");
+			panelCentar.add(getBtn_86(), "cell 16 7,growy");
+			panelCentar.add(getBtn_87(), "cell 17 7,growy");
+			panelCentar.add(getBtn_88(), "cell 18 7,growy");
 		}
 		return panelCentar;
 	}
 	private JPanel getPanelSouth() {
 		if (panelSouth == null) {
 			panelSouth = new JPanel();
-			panelSouth.setLayout(new CardLayout(0, 0));
-			panelSouth.add(getScrollPane(), "name_68178521182341");
+			panelSouth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			panelSouth.add(getScrollPane());
+			panelSouth.add(getLblLogo());
 		}
 		return panelSouth;
 	}
@@ -895,6 +1036,13 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("READY");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					panelEast.setVisible(false);
+					lblPlayerName.setText(txtName.getText());
+					GUIControler.readyForTheGame();
+				}
+			});
 			btnNewButton.setFont(new Font("Monospaced", Font.BOLD, 17));
 			btnNewButton.setMaximumSize(new Dimension(85, 50));
 			btnNewButton.setPreferredSize(new Dimension(85, 50));
@@ -907,7 +1055,7 @@ public class PlayerGUI extends JFrame{
 			console = new JTextArea();
 			console.setEditable(false);
 			console.setBorder(null);
-			console.setRows(3);
+			console.setRows(4);
 			console.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			console.setWrapStyleWord(true);
 			console.setLineWrap(true);
@@ -917,6 +1065,9 @@ public class PlayerGUI extends JFrame{
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
+			scrollPane.setPreferredSize(new Dimension(430, 70));
+			scrollPane.setMinimumSize(new Dimension(460, 70));
+			scrollPane.setSize(460, 70);
 			scrollPane.setFont(new Font("Monospaced", Font.BOLD, 11));
 			scrollPane.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "Console", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			scrollPane.setViewportView(getConsole());
@@ -1017,5 +1168,488 @@ public class PlayerGUI extends JFrame{
 			mntmAboutUs.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		}
 		return mntmAboutUs;
+	}
+	private JLabel getLblPlayerName() {
+		if (lblPlayerName == null) {
+			lblPlayerName = new JLabel("Player Name");
+			lblPlayerName.setFont(new Font("Monospaced", Font.BOLD, 13));
+		}
+		return lblPlayerName;
+	}
+	private JLabel getLblVersus() {
+		if (lblVersus == null) {
+			lblVersus = new JLabel("VS");
+			lblVersus.setFont(new Font("Monospaced", Font.BOLD, 13));
+		}
+		return lblVersus;
+	}
+	private JLabel getLblOpponentName() {
+		if (lblOpponentName == null) {
+			lblOpponentName = new JLabel("Opponent Name");
+			lblOpponentName.setFont(new Font("Monospaced", Font.BOLD, 13));
+		}
+		return lblOpponentName;
+	}
+	private JButton getBtn_11() {
+		if (btn_11 == null) {
+			btn_11 = new JButton("");
+			btn_11.setName("btn_11");
+		}
+		return btn_11;
+	}
+	private JButton getBtn_12() {
+		if (btn_12 == null) {
+			btn_12 = new JButton("");
+			btn_12.setName("btn_12");
+		}
+		return btn_12;
+	}
+	private JButton getBtn_13() {
+		if (btn_13 == null) {
+			btn_13 = new JButton("");
+			btn_13.setName("btn_13");
+		}
+		return btn_13;
+	}
+	private JButton getBtn_14() {
+		if (btn_14 == null) {
+			btn_14 = new JButton("");
+			btn_14.setName("btn_14");
+		}
+		return btn_14;
+	}
+	private JButton getBtn_15() {
+		if (btn_15 == null) {
+			btn_15 = new JButton("");
+			btn_15.setName("btn_15");
+		}
+		return btn_15;
+	}
+	private JButton getBtn_16() {
+		if (btn_16 == null) {
+			btn_16 = new JButton("");
+			btn_16.setName("btn_16");
+		}
+		return btn_16;
+	}
+	private JButton getBtn_17() {
+		if (btn_17 == null) {
+			btn_17 = new JButton("");
+			btn_17.setName("btn_17");
+		}
+		return btn_17;
+	}
+	private JButton getBtn_18() {
+		if (btn_18 == null) {
+			btn_18 = new JButton("");
+			btn_18.setName("btn_18");
+		}
+		return btn_18;
+	}
+	private JButton getBtn_21() {
+		if (btn_21 == null) {
+			btn_21 = new JButton("");
+			btn_21.setName("btn_21");
+		}
+		return btn_21;
+	}
+	private JButton getBtn_22() {
+		if (btn_22 == null) {
+			btn_22 = new JButton("");
+			btn_22.setName("btn_22");
+		}
+		return btn_22;
+	}
+	private JButton getBtn_23() {
+		if (btn_23 == null) {
+			btn_23 = new JButton("");
+			btn_23.setName("btn_23");
+		}
+		return btn_23;
+	}
+	private JButton getBtn_24() {
+		if (btn_24 == null) {
+			btn_24 = new JButton("");
+			btn_24.setName("btn_24");
+		}
+		return btn_24;
+	}
+	private JButton getBtn_25() {
+		if (btn_25 == null) {
+			btn_25 = new JButton("");
+			btn_25.setName("btn_25");
+		}
+		return btn_25;
+	}
+	private JButton getBtn_26() {
+		if (btn_26 == null) {
+			btn_26 = new JButton("");
+			btn_26.setName("btn_26");
+		}
+		return btn_26;
+	}
+	private JButton getBtn_27() {
+		if (btn_27 == null) {
+			btn_27 = new JButton("");
+			btn_27.setName("btn_27");
+		}
+		return btn_27;
+	}
+	private JButton getBtn_28() {
+		if (btn_28 == null) {
+			btn_28 = new JButton("");
+			btn_28.setName("btn_28");
+		}
+		return btn_28;
+	}
+	private JButton getBtn_31() {
+		if (btn_31 == null) {
+			btn_31 = new JButton("");
+			btn_31.setName("btn_31");
+		}
+		return btn_31;
+	}
+	private JButton getBtn_32() {
+		if (btn_32 == null) {
+			btn_32 = new JButton("");
+			btn_32.setName("btn_32");
+		}
+		return btn_32;
+	}
+	private JButton getBtn_33() {
+		if (btn_33 == null) {
+			btn_33 = new JButton("");
+			btn_33.setName("btn_33");
+		}
+		return btn_33;
+	}
+	private JButton getBtn_34() {
+		if (btn_34 == null) {
+			btn_34 = new JButton("");
+			btn_34.setName("btn_34");
+		}
+		return btn_34;
+	}
+	private JButton getBtn_35() {
+		if (btn_35 == null) {
+			btn_35 = new JButton("");
+			btn_35.setName("btn_35");
+		}
+		return btn_35;
+	}
+	private JButton getBtn_36() {
+		if (btn_36 == null) {
+			btn_36 = new JButton("");
+			btn_36.setName("btn_36");
+		}
+		return btn_36;
+	}
+	private JButton getBtn_37() {
+		if (btn_37 == null) {
+			btn_37 = new JButton("");
+			btn_37.setName("btn_37");
+		}
+		return btn_37;
+	}
+	private JButton getBtn_38() {
+		if (btn_38 == null) {
+			btn_38 = new JButton("");
+			btn_38.setName("btn_38");
+		}
+		return btn_38;
+	}
+	private JButton getBtn_41() {
+		if (btn_41 == null) {
+			btn_41 = new JButton("");
+			btn_41.setName("btn_41");
+		}
+		return btn_41;
+	}
+	private JButton getBtn_42() {
+		if (btn_42 == null) {
+			btn_42 = new JButton("");
+			btn_42.setName("btn_42");
+		}
+		return btn_42;
+	}
+	private JButton getBtn_43() {
+		if (btn_43 == null) {
+			btn_43 = new JButton("");
+			btn_43.setName("btn_43");
+		}
+		return btn_43;
+	}
+	private JButton getBtn_44() {
+		if (btn_44 == null) {
+			btn_44 = new JButton("");
+			btn_44.setName("btn_44");
+		}
+		return btn_44;
+	}
+	private JButton getBtn_45() {
+		if (btn_45 == null) {
+			btn_45 = new JButton("");
+			btn_45.setName("btn_45");
+		}
+		return btn_45;
+	}
+	private JButton getBtn_46() {
+		if (btn_46 == null) {
+			btn_46 = new JButton("");
+			btn_46.setName("btn_46");
+		}
+		return btn_46;
+	}
+	private JButton getBtn_47() {
+		if (btn_47 == null) {
+			btn_47 = new JButton("");
+			btn_47.setName("btn_47");
+		}
+		return btn_47;
+	}
+	private JButton getBtn_48() {
+		if (btn_48 == null) {
+			btn_48 = new JButton("");
+			btn_48.setName("btn_48");
+		}
+		return btn_48;
+	}
+	private JButton getBtn_51() {
+		if (btn_51 == null) {
+			btn_51 = new JButton("");
+			btn_51.setName("btn_51");
+		}
+		return btn_51;
+	}
+	private JButton getBtn_52() {
+		if (btn_52 == null) {
+			btn_52 = new JButton("");
+			btn_52.setName("btn_52");
+		}
+		return btn_52;
+	}
+	private JButton getBtn_53() {
+		if (btn_53 == null) {
+			btn_53 = new JButton("");
+			btn_53.setName("btn_53");
+		}
+		return btn_53;
+	}
+	private JButton getBtn_54() {
+		if (btn_54 == null) {
+			btn_54 = new JButton("");
+			btn_54.setName("btn_54");
+		}
+		return btn_54;
+	}
+	private JButton getBtn_55() {
+		if (btn_55 == null) {
+			btn_55 = new JButton("");
+			btn_55.setName("btn_55");
+		}
+		return btn_55;
+	}
+	private JButton getBtn_56() {
+		if (btn_56 == null) {
+			btn_56 = new JButton("");
+			btn_56.setName("btn_56");
+		}
+		return btn_56;
+	}
+	private JButton getBtn_57() {
+		if (btn_57 == null) {
+			btn_57 = new JButton("");
+			btn_57.setName("btn_57");
+		}
+		return btn_57;
+	}
+	private JButton getBtn_58() {
+		if (btn_58 == null) {
+			btn_58 = new JButton("");
+			btn_58.setName("btn_58");
+		}
+		return btn_58;
+	}
+	private JButton getBtn_61() {
+		if (btn_61 == null) {
+			btn_61 = new JButton("");
+			btn_61.setName("btn_61");
+		}
+		return btn_61;
+	}
+	private JButton getBtn_62() {
+		if (btn_62 == null) {
+			btn_62 = new JButton("");
+			btn_62.setName("btn_62");
+		}
+		return btn_62;
+	}
+	private JButton getBtn_63() {
+		if (btn_63 == null) {
+			btn_63 = new JButton("");
+			btn_63.setName("btn_63");
+		}
+		return btn_63;
+	}
+	private JButton getBtn_64() {
+		if (btn_64 == null) {
+			btn_64 = new JButton("");
+			btn_64.setName("btn_64");
+		}
+		return btn_64;
+	}
+	private JButton getBtn_65() {
+		if (btn_65 == null) {
+			btn_65 = new JButton("");
+			btn_65.setName("btn_65");
+		}
+		return btn_65;
+	}
+	private JButton getBtn_66() {
+		if (btn_66 == null) {
+			btn_66 = new JButton("");
+			btn_66.setName("btn_66");
+		}
+		return btn_66;
+	}
+	private JButton getBtn_67() {
+		if (btn_67 == null) {
+			btn_67 = new JButton("");
+			btn_67.setName("btn_67");
+		}
+		return btn_67;
+	}
+	private JButton getBtn_68() {
+		if (btn_68 == null) {
+			btn_68 = new JButton("");
+			btn_68.setName("btn_68");
+		}
+		return btn_68;
+	}
+	private JButton getBtn_71() {
+		if (btn_71 == null) {
+			btn_71 = new JButton("");
+			btn_71.setName("btn_71");
+		}
+		return btn_71;
+	}
+	private JButton getBtn_72() {
+		if (btn_72 == null) {
+			btn_72 = new JButton("");
+			btn_72.setName("btn_72");
+		}
+		return btn_72;
+	}
+	private JButton getBtn_73() {
+		if (btn_73 == null) {
+			btn_73 = new JButton("");
+			btn_73.setName("btn_73");
+		}
+		return btn_73;
+	}
+	private JButton getBtn_74() {
+		if (btn_74 == null) {
+			btn_74 = new JButton("");
+			btn_74.setName("btn_74");
+		}
+		return btn_74;
+	}
+	private JButton getBtn_75() {
+		if (btn_75 == null) {
+			btn_75 = new JButton("");
+			btn_75.setName("btn_75");
+		}
+		return btn_75;
+	}
+	private JButton getBtn_76() {
+		if (btn_76 == null) {
+			btn_76 = new JButton("");
+			btn_76.setName("btn_76");
+		}
+		return btn_76;
+	}
+	private JButton getBtn_77() {
+		if (btn_77 == null) {
+			btn_77 = new JButton("");
+			btn_77.setName("btn_77");
+		}
+		return btn_77;
+	}
+	private JButton getBtn_78() {
+		if (btn_78 == null) {
+			btn_78 = new JButton("");
+			btn_78.setName("btn_78");
+		}
+		return btn_78;
+	}
+	private JButton getBtn_81() {
+		if (btn_81 == null) {
+			btn_81 = new JButton("");
+			btn_81.setName("btn_81");
+		}
+		return btn_81;
+	}
+	private JButton getBtn_82() {
+		if (btn_82 == null) {
+			btn_82 = new JButton("");
+			btn_82.setName("btn_82");
+		}
+		return btn_82;
+	}
+	private JButton getBtn_83() {
+		if (btn_83 == null) {
+			btn_83 = new JButton("");
+			btn_83.setName("btn_83");
+		}
+		return btn_83;
+	}
+	private JButton getBtn_84() {
+		if (btn_84 == null) {
+			btn_84 = new JButton("");
+			btn_84.setName("btn_84");
+		}
+		return btn_84;
+	}
+	private JButton getBtn_85() {
+		if (btn_85 == null) {
+			btn_85 = new JButton("");
+			btn_85.setName("btn_85");
+		}
+		return btn_85;
+	}
+	private JButton getBtn_86() {
+		if (btn_86 == null) {
+			btn_86 = new JButton("");
+			btn_86.setName("btn_86");
+		}
+		return btn_86;
+	}
+	private JButton getBtn_87() {
+		if (btn_87 == null) {
+			btn_87 = new JButton("");
+			btn_87.setName("btn_87");
+		}
+		return btn_87;
+	}
+	private JButton getBtn_88() {
+		if (btn_88 == null) {
+			btn_88 = new JButton("");
+			btn_88.setName("btn_88");
+		}
+		return btn_88;
+	}
+	private JLabel getLblLogo() {
+		if (lblLogo == null) {
+			lblLogo = new JLabel("");
+			lblLogo.setHorizontalAlignment(SwingConstants.RIGHT);
+			lblLogo.setIcon(new ImageIcon(PlayerGUI.class.getResource("/resources/logo.png")));
+		}
+		return lblLogo;
+	}
+	private JLabel getLblIcon() {
+		if (lblIcon == null) {
+			lblIcon = new JLabel("");
+		}
+		return lblIcon;
 	}
 }

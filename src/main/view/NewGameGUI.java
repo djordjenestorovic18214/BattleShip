@@ -137,7 +137,7 @@ public class NewGameGUI extends JFrame {
 					
 				}
 			});
-			btnStartGame.setFont(new Font("Monospaced", Font.BOLD, 13));
+			btnStartGame.setFont(new Font("Monospaced", Font.BOLD, 15));
 		}
 		return btnStartGame;
 	}
