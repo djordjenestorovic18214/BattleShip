@@ -1,10 +1,41 @@
 package main;
 
+import javax.swing.JButton;
+
 public class Position {
+	private JButton field;
+	private String name;
+	private boolean busy;
+	private boolean placed;
+	private boolean hit;
 	private int column;
 	private int row;
-	private boolean hit=false;
 
+	public Position(JButton button) {
+		field = button;
+		name = button.getName();
+		column = Integer.parseInt(name.substring(4,5));
+		row = Integer.parseInt(button.getName().substring(3,4));
+		hit = false;
+		busy = false;
+		placed = false;
+	}
+	
+	public JButton getField() {
+		return field;
+	}
+	public String getName() {
+		return name;		
+	}
+	
+	public int getColumn() {
+		return column;		
+	}
+	
+	public int getRow() {
+		return row;		
+	}	
+	
 	public boolean isHit() {
 		return hit;
 	}
@@ -13,24 +44,20 @@ public class Position {
 		this.hit = hit;
 	}
 
-	public int getColum() {
-		return column;
+	public boolean isBusy() {
+		return busy;
 	}
 
-	public void setColum(int column) {
-		this.column = column;
+	public void setBusy(boolean busy) {
+		this.busy = busy;
 	}
 
-	public int getRow() {
-		return row;
+	public boolean isPlaced() {
+		return placed;
 	}
 
-	public void setRow(int row) {
-		this.row = row;
+	public void setPlaced(boolean placed) {
+		this.placed = placed;
 	}
 
-	public Position(int row,int column) {
-		this.column = column;
-		this.row = row;
-	}
 }

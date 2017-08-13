@@ -1,6 +1,5 @@
 package main.view;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
@@ -17,7 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.lang.reflect.Field;
+import java.util.LinkedList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
@@ -28,8 +27,9 @@ import java.awt.Font;
 import javax.swing.JTextArea;
 import java.awt.Cursor;
 import javax.swing.JScrollPane;
-import java.awt.CardLayout;
 import javax.swing.border.TitledBorder;
+
+import main.Position;
 
 import javax.swing.border.LineBorder;
 import java.awt.Color;
@@ -48,77 +48,76 @@ public class PlayerGUI extends JFrame{
 	private static JButton btn11;
 	private static JButton btn12;
 	private static JButton btn13;
-	private JButton btn14;
-	private JButton btn15;
-	private JButton btn16;
-	private JButton btn17;
-	private JButton btn18;
-	private JButton btn21;
-	private JButton btn22;
-	private JButton btn23;
-	private JButton btn31;
-	private JButton btn41;
-	private JButton btn32;
-	private JButton btn42;
-	private JButton btn24;
-	private JButton btn75;
-	private JButton btn87;
-	private JButton btn78;
-	private JButton btn66;
-	private JButton btn64;
-	private JButton btn81;
-	private JButton btn71;
-	private JButton btn51;
-	private JButton btn61;
-	private JButton btn28;
-	private JButton btn27;
-	private JButton btn26;
-	private JButton btn25;
-	private JButton btn33;
-	private JButton btn52;
-	private JButton btn62;
-	private JButton btn72;
-	private JButton btn82;
-	private JButton btn83;
-	private JButton btn84;
-	private JButton btn85;
-	private JButton btn86;
-	private JButton btn88;
-	private JButton btn38;
-	private JButton btn37;
-	private JButton btn36;
-	private JButton btn35;
-	private JButton btn34;
-	private JButton btn43;
-	private JButton btn53;
-	private JButton btn63;
-	private JButton btn73;
-	private JButton btn74;
-	private JButton btn76;
-	private JButton btn77;
-	private JButton btn68;
-	private JButton btn58;
-	private JButton btn48;
-	private JButton btn47;
-	private JButton btn46;
-	private JButton btn45;
-	private JButton btn44;
-	private JButton btn54;
-	private JButton btn55;
-	private JButton btn65;
-	private JButton btn56;
-	private JButton btn57;
-	private JButton btn67;
+	private static JButton btn14;
+	private static JButton btn15;
+	private static JButton btn16;
+	private static JButton btn17;
+	private static JButton btn18;
+	private static JButton btn21;
+	private static JButton btn22;
+	private static JButton btn23;
+	private static JButton btn31;
+	private static JButton btn41;
+	private static JButton btn32;
+	private static JButton btn42;
+	private static JButton btn24;
+	private static JButton btn75;
+	private static JButton btn87;
+	private static JButton btn78;
+	private static JButton btn66;
+	private static JButton btn64;
+	private static JButton btn81;
+	private static JButton btn71;
+	private static JButton btn51;
+	private static JButton btn61;
+	private static JButton btn28;
+	private static JButton btn27;
+	private static JButton btn26;
+	private static JButton btn25;
+	private static JButton btn33;
+	private static JButton btn52;
+	private static JButton btn62;
+	private static JButton btn72;
+	private static JButton btn82;
+	private static JButton btn83;
+	private static JButton btn84;
+	private static JButton btn85;
+	private static JButton btn86;
+	private static JButton btn88;
+	private static JButton btn38;
+	private static JButton btn37;
+	private static JButton btn36;
+	private static JButton btn35;
+	private static JButton btn34;
+	private static JButton btn43;
+	private static JButton btn53;
+	private static JButton btn63;
+	private static JButton btn73;
+	private static JButton btn74;
+	private static JButton btn76;
+	private static JButton btn77;
+	private static JButton btn68;
+	private static JButton btn58;
+	private static JButton btn48;
+	private static JButton btn47;
+	private static JButton btn46;
+	private static JButton btn45;
+	private static JButton btn44;
+	private static JButton btn54;
+	private static JButton btn55;
+	private static JButton btn65;
+	private static JButton btn56;
+	private static JButton btn57;
+	private static JButton btn67;
 	private JLabel lblIzborBrodova;
 	@SuppressWarnings("rawtypes")
 	private JComboBox cbShipSize;
 	private JLabel lblOrientation;
 	private JRadioButton rdbtnV;
 	private JRadioButton rdbtnH;
-	private JButton btnNextShip;
-
-	private static JButton[] matrica = new JButton[100];
-	private JButton btnNewButton;
+	private static JButton btnNextShip;
+	private LinkedList<JButton> playerTerritory = new LinkedList<JButton>();
+	private JButton btnReady;
 	JTextArea console;
 	private JScrollPane scrollPane;
 	private JMenuBar menuBar;
@@ -199,44 +198,6 @@ public class PlayerGUI extends JFrame{
 	private JButton btn_88;
 	private JLabel lblLogo;
 	private JLabel lblIcon;
-	
-// 	KAD ZAVRSIMO GUI RADICEMO NA LOGICI
-	
-/*	public void populateTheArray(){
-		Field[] fields = JButton.class.getDeclaredFields();
-		int i=0;
-		
-		for(Field field: fields){
-			if (field.getType().equals(JButton.class)) {
-                try {
-                    matrica[i] = (JButton) field.get(this);
-                    i++;
-                } catch (IllegalArgumentException | IllegalAccessException
-                        | SecurityException e) {
-                    e.printStackTrace();
-                }
-            }
-		}
-	}
-	
-	int elementsInArray(){
-		int counter =0;
-		for (int i = 0; i < matrica.length; i++) {
-			if(matrica[i] != null){
-				counter++;
-			}
-		}
-		return counter;
-	}
-	
-	public void selectionOfPlaces(String row,String column,String size,String orientation){
-		if(orientation.equals("H")){
-			for (int i = 0; i < Integer.parseInt(size); i++) {
-				btn11.setEnabled(false);
-			}
-			
-		}
-	}*/
 
 	/**
 	 * Create the application.
@@ -266,6 +227,8 @@ public class PlayerGUI extends JFrame{
 		ButtonGroup group = new ButtonGroup();
 		group.add(rdbtnV);
 		group.add(rdbtnH);
+		populateListOfButtons();
+		GUIControler.populateArrayOfPositions(playerTerritory);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -273,6 +236,73 @@ public class PlayerGUI extends JFrame{
 			}
 		});
 	}
+	private void populateListOfButtons() {
+		playerTerritory.add(btn11);
+		playerTerritory.add(btn12);
+		playerTerritory.add(btn13);
+		playerTerritory.add(btn14);
+		playerTerritory.add(btn15);
+		playerTerritory.add(btn16);
+		playerTerritory.add(btn17);
+		playerTerritory.add(btn18);
+		playerTerritory.add(btn21);
+		playerTerritory.add(btn22);
+		playerTerritory.add(btn23);
+		playerTerritory.add(btn24);
+		playerTerritory.add(btn25);
+		playerTerritory.add(btn26);
+		playerTerritory.add(btn27);
+		playerTerritory.add(btn28);
+		playerTerritory.add(btn31);
+		playerTerritory.add(btn32);
+		playerTerritory.add(btn33);
+		playerTerritory.add(btn34);
+		playerTerritory.add(btn35);
+		playerTerritory.add(btn36);
+		playerTerritory.add(btn37);
+		playerTerritory.add(btn38);
+		playerTerritory.add(btn41);
+		playerTerritory.add(btn42);
+		playerTerritory.add(btn43);
+		playerTerritory.add(btn44);
+		playerTerritory.add(btn45);
+		playerTerritory.add(btn46);
+		playerTerritory.add(btn47);
+		playerTerritory.add(btn48);
+		playerTerritory.add(btn51);
+		playerTerritory.add(btn52);
+		playerTerritory.add(btn53);
+		playerTerritory.add(btn54);
+		playerTerritory.add(btn55);
+		playerTerritory.add(btn56);
+		playerTerritory.add(btn57);
+		playerTerritory.add(btn58);
+		playerTerritory.add(btn61);
+		playerTerritory.add(btn62);
+		playerTerritory.add(btn63);
+		playerTerritory.add(btn64);
+		playerTerritory.add(btn65);
+		playerTerritory.add(btn66);
+		playerTerritory.add(btn67);
+		playerTerritory.add(btn68);
+		playerTerritory.add(btn71);
+		playerTerritory.add(btn72);
+		playerTerritory.add(btn73);
+		playerTerritory.add(btn74);
+		playerTerritory.add(btn75);
+		playerTerritory.add(btn76);
+		playerTerritory.add(btn77);
+		playerTerritory.add(btn78);
+		playerTerritory.add(btn81);
+		playerTerritory.add(btn82);
+		playerTerritory.add(btn83);
+		playerTerritory.add(btn84);
+		playerTerritory.add(btn85);
+		playerTerritory.add(btn86);
+		playerTerritory.add(btn87);
+		playerTerritory.add(btn88);
+	}
+
 	private JPanel getPanelEast() {
 		if (panelEast == null) {
 			panelEast = new JPanel();
@@ -285,7 +315,7 @@ public class PlayerGUI extends JFrame{
 			panelEast.add(getLblOrientation(), "cell 0 4,alignx center,growy");
 			panelEast.add(getRdbtnV(), "flowx,cell 0 5,alignx center,growy");
 			panelEast.add(getButton_6_1(), "cell 0 6,alignx center,growy");
-			panelEast.add(getBtnNewButton(), "cell 0 8,alignx center,growy");
+			panelEast.add(getBtnReady(), "cell 0 8,alignx center,growy");
 			panelEast.add(getRdbtnH(), "cell 0 5,alignx center,growy");
 		}
 		return panelEast;
@@ -459,6 +489,8 @@ public class PlayerGUI extends JFrame{
 			btn11 = new JButton("");
 			btn11.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("11", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn11, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
 			btn11.setMinimumSize(new Dimension(10, 10));
@@ -470,6 +502,11 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn12() {
 		if (btn12 == null) {
 			btn12 = new JButton("");
+			btn12.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIControler.activeButton("12", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn12, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}});
 			btn12.setMinimumSize(new Dimension(10, 10));
 			btn12.setPreferredSize(new Dimension(33, 33));
 			btn12.setName("btn12");
@@ -479,6 +516,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn13() {
 		if (btn13 == null) {
 			btn13 = new JButton("");
+			btn13.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("13", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn13, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn13.setMinimumSize(new Dimension(10, 10));
 			btn13.setPreferredSize(new Dimension(33, 33));
 			btn13.setName("btn13");
@@ -488,6 +531,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn14() {
 		if (btn14 == null) {
 			btn14 = new JButton("");
+			btn14.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("14", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn14, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn14.setMinimumSize(new Dimension(10, 10));
 			btn14.setPreferredSize(new Dimension(33, 33));
 			btn14.setName("btn14");
@@ -497,6 +546,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn15() {
 		if (btn15 == null) {
 			btn15 = new JButton("");
+			btn15.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("15", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn15, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn15.setMinimumSize(new Dimension(10, 10));
 			btn15.setPreferredSize(new Dimension(33, 33));
 			btn15.setName("btn15");
@@ -506,6 +561,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn16() {
 		if (btn16 == null) {
 			btn16 = new JButton("");
+			btn16.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("16", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn16, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn16.setMinimumSize(new Dimension(10, 10));
 			btn16.setPreferredSize(new Dimension(33, 33));
 			btn16.setName("btn16");
@@ -515,6 +576,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn17() {
 		if (btn17 == null) {
 			btn17 = new JButton("");
+			btn17.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("17", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn17, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn17.setMinimumSize(new Dimension(10, 10));
 			btn17.setPreferredSize(new Dimension(33, 33));
 			btn17.setName("btn17");
@@ -524,6 +591,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn18() {
 		if (btn18 == null) {
 			btn18 = new JButton("");
+			btn18.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("18", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn18, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn18.setMinimumSize(new Dimension(1, 10));
 			btn18.setPreferredSize(new Dimension(33, 33));
 			btn18.setName("btn18");
@@ -533,6 +606,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn21() {
 		if (btn21 == null) {
 			btn21 = new JButton("");
+			btn21.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("21", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn21, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn21.setPreferredSize(new Dimension(33, 33));
 			btn21.setName("btn21");
 		}
@@ -541,6 +620,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn22() {
 		if (btn22 == null) {
 			btn22 = new JButton("");
+			btn22.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("22", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn22, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn22.setPreferredSize(new Dimension(33, 33));
 			btn22.setName("btn22");
 		}
@@ -549,6 +634,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn23() {
 		if (btn23 == null) {
 			btn23 = new JButton("");
+			btn23.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("23", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn23, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn23.setPreferredSize(new Dimension(33, 33));
 			btn23.setName("btn23");
 		}
@@ -557,6 +648,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn31() {
 		if (btn31 == null) {
 			btn31 = new JButton("");
+			btn31.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("31", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn31, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn31.setPreferredSize(new Dimension(33, 33));
 			btn31.setName("btn31");
 		}
@@ -565,6 +662,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn41() {
 		if (btn41 == null) {
 			btn41 = new JButton("");
+			btn41.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("41", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn41, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn41.setPreferredSize(new Dimension(33, 33));
 			btn41.setName("btn41");
 		}
@@ -573,6 +676,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn32() {
 		if (btn32 == null) {
 			btn32 = new JButton("");
+			btn32.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("32", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn32, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn32.setPreferredSize(new Dimension(33, 33));
 			btn32.setName("btn32");
 		}
@@ -581,6 +690,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn42() {
 		if (btn42 == null) {
 			btn42 = new JButton("");
+			btn42.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("42", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn42, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn42.setPreferredSize(new Dimension(33, 33));
 			btn42.setName("btn42");
 		}
@@ -589,6 +704,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn24() {
 		if (btn24 == null) {
 			btn24 = new JButton("");
+			btn24.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("24", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn24, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn24.setPreferredSize(new Dimension(33, 33));
 			btn24.setName("btn24");
 		}
@@ -597,6 +718,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn75() {
 		if (btn75 == null) {
 			btn75 = new JButton("");
+			btn75.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("75", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn75, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn75.setPreferredSize(new Dimension(33, 33));
 			btn75.setName("btn75");
 		}
@@ -605,6 +732,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn87() {
 		if (btn87 == null) {
 			btn87 = new JButton("");
+			btn87.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("87", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn87, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn87.setPreferredSize(new Dimension(33, 33));
 			btn87.setName("btn87");
 		}
@@ -613,6 +746,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn78() {
 		if (btn78 == null) {
 			btn78 = new JButton("");
+			btn78.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("78", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn78, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn78.setPreferredSize(new Dimension(33, 33));
 			btn78.setName("btn78");
 		}
@@ -621,6 +760,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn66() {
 		if (btn66 == null) {
 			btn66 = new JButton("");
+			btn66.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("66", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn66, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn66.setPreferredSize(new Dimension(33, 33));
 			btn66.setName("btn66");
 		}
@@ -629,6 +774,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn64() {
 		if (btn64 == null) {
 			btn64 = new JButton("");
+			btn64.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("64", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn64, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn64.setPreferredSize(new Dimension(33, 33));
 			btn64.setName("btn64");
 		}
@@ -637,6 +788,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn81() {
 		if (btn81 == null) {
 			btn81 = new JButton("");
+			btn81.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("81", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn81, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn81.setPreferredSize(new Dimension(33, 33));
 			btn81.setName("btn81");
 		}
@@ -645,6 +802,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn71() {
 		if (btn71 == null) {
 			btn71 = new JButton("");
+			btn71.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("71", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn71, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn71.setPreferredSize(new Dimension(33, 33));
 			btn71.setName("btn71");
 		}
@@ -653,6 +816,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn51() {
 		if (btn51 == null) {
 			btn51 = new JButton("");
+			btn51.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("51", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn51, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn51.setPreferredSize(new Dimension(33, 33));
 			btn51.setName("btn51");
 		}
@@ -661,6 +830,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn61() {
 		if (btn61 == null) {
 			btn61 = new JButton("");
+			btn61.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("61", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn61, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn61.setPreferredSize(new Dimension(33, 33));
 			btn61.setName("btn61");
 		}
@@ -669,6 +844,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn28() {
 		if (btn28 == null) {
 			btn28 = new JButton("");
+			btn28.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("28", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn28, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn28.setPreferredSize(new Dimension(33, 33));
 			btn28.setName("btn28");
 		}
@@ -677,6 +858,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn27() {
 		if (btn27 == null) {
 			btn27 = new JButton("");
+			btn27.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("27", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn27, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn27.setPreferredSize(new Dimension(33, 33));
 			btn27.setName("btn27");
 		}
@@ -685,6 +872,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn26() {
 		if (btn26 == null) {
 			btn26 = new JButton("");
+			btn26.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("26", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn26, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn26.setPreferredSize(new Dimension(33, 33));
 			btn26.setName("btn26");
 		}
@@ -693,6 +886,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn25() {
 		if (btn25 == null) {
 			btn25 = new JButton("");
+			btn25.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("25", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn25, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn25.setPreferredSize(new Dimension(33, 33));
 			btn25.setName("btn25");
 		}
@@ -701,6 +900,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn33() {
 		if (btn33 == null) {
 			btn33 = new JButton("");
+			btn33.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("33", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn33, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn33.setPreferredSize(new Dimension(33, 33));
 			btn33.setName("btn33");
 		}
@@ -709,6 +914,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn52() {
 		if (btn52 == null) {
 			btn52 = new JButton("");
+			btn52.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("52", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn52, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn52.setPreferredSize(new Dimension(33, 33));
 			btn52.setName("btn52");
 		}
@@ -717,6 +928,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn62() {
 		if (btn62 == null) {
 			btn62 = new JButton("");
+			btn62.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("62", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn62, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn62.setPreferredSize(new Dimension(33, 33));
 			btn62.setName("btn62");
 		}
@@ -725,6 +942,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn72() {
 		if (btn72 == null) {
 			btn72 = new JButton("");
+			btn72.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("72", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn72, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn72.setPreferredSize(new Dimension(33, 33));
 			btn72.setName("btn72");
 		}
@@ -733,6 +956,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn82() {
 		if (btn82 == null) {
 			btn82 = new JButton("");
+			btn82.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("82", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn82, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn82.setPreferredSize(new Dimension(33, 33));
 			btn82.setName("btn82");
 		}
@@ -741,6 +970,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn83() {
 		if (btn83 == null) {
 			btn83 = new JButton("");
+			btn83.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("83", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn83, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn83.setPreferredSize(new Dimension(33, 33));
 			btn83.setName("btn83");
 		}
@@ -749,6 +984,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn84() {
 		if (btn84 == null) {
 			btn84 = new JButton("");
+			btn84.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("84", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn84, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn84.setPreferredSize(new Dimension(33, 33));
 			btn84.setName("btn84");
 		}
@@ -757,6 +998,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn85() {
 		if (btn85 == null) {
 			btn85 = new JButton("");
+			btn85.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("85", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn85, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn85.setPreferredSize(new Dimension(33, 33));
 			btn85.setName("btn85");
 		}
@@ -765,7 +1012,14 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn86() {
 		if (btn86 == null) {
 			btn86 = new JButton("");
+			btn86.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("86", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn86, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn86.setPreferredSize(new Dimension(33, 33));
+			btn86.setName("btn86");
 		}
 		return btn86;
 	}
@@ -774,6 +1028,8 @@ public class PlayerGUI extends JFrame{
 			btn88 = new JButton("");
 			btn88.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					GUIControler.activeButton("88", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn88, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
 			btn88.setPreferredSize(new Dimension(33, 33));
@@ -784,6 +1040,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn38() {
 		if (btn38 == null) {
 			btn38 = new JButton("");
+			btn38.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("38", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn38, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn38.setPreferredSize(new Dimension(33, 33));
 			btn38.setName("btn38");
 		}
@@ -792,6 +1054,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn37() {
 		if (btn37 == null) {
 			btn37 = new JButton("");
+			btn37.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("37", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn37, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn37.setPreferredSize(new Dimension(33, 33));
 			btn37.setName("btn37");
 		}
@@ -800,6 +1068,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn36() {
 		if (btn36 == null) {
 			btn36 = new JButton("");
+			btn36.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("36", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn36, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn36.setPreferredSize(new Dimension(33, 33));
 			btn36.setName("btn36");
 		}
@@ -808,6 +1082,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn35() {
 		if (btn35 == null) {
 			btn35 = new JButton("");
+			btn35.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("35", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn35, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn35.setPreferredSize(new Dimension(33, 33));
 			btn35.setName("btn35");
 		}
@@ -816,6 +1096,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn34() {
 		if (btn34 == null) {
 			btn34 = new JButton("");
+			btn34.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("34", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn34, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn34.setPreferredSize(new Dimension(33, 33));
 			btn34.setName("btn34");
 		}
@@ -824,6 +1110,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn43() {
 		if (btn43 == null) {
 			btn43 = new JButton("");
+			btn43.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("43", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn43, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn43.setPreferredSize(new Dimension(33, 33));
 			btn43.setName("btn43");
 		}
@@ -832,6 +1124,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn53() {
 		if (btn53 == null) {
 			btn53 = new JButton("");
+			btn53.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("53", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn53, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn53.setPreferredSize(new Dimension(33, 33));
 			btn53.setName("btn53");
 		}
@@ -840,6 +1138,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn63() {
 		if (btn63 == null) {
 			btn63 = new JButton("");
+			btn63.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("63", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn63, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn63.setPreferredSize(new Dimension(33, 33));
 			btn63.setName("btn63");
 		}
@@ -848,6 +1152,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn73() {
 		if (btn73 == null) {
 			btn73 = new JButton("");
+			btn73.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("73", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn73, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn73.setPreferredSize(new Dimension(33, 33));
 			btn73.setName("btn73");
 		}
@@ -856,6 +1166,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn74() {
 		if (btn74 == null) {
 			btn74 = new JButton("");
+			btn74.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("74", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn74, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn74.setPreferredSize(new Dimension(33, 33));
 			btn74.setName("btn74");
 		}
@@ -864,6 +1180,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn76() {
 		if (btn76 == null) {
 			btn76 = new JButton("");
+			btn76.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("76", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn76, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn76.setPreferredSize(new Dimension(33, 33));
 			btn76.setName("btn76");
 		}
@@ -872,6 +1194,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn77() {
 		if (btn77 == null) {
 			btn77 = new JButton("");
+			btn77.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("77", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn77, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn77.setPreferredSize(new Dimension(33, 33));
 			btn77.setName("btn77");
 		}
@@ -880,6 +1208,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn68() {
 		if (btn68 == null) {
 			btn68 = new JButton("");
+			btn68.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("68", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn68, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn68.setPreferredSize(new Dimension(33, 33));
 			btn68.setName("btn68");
 		}
@@ -888,6 +1222,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn58() {
 		if (btn58 == null) {
 			btn58 = new JButton("");
+			btn58.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("58", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn58, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn58.setPreferredSize(new Dimension(33, 33));
 			btn58.setName("btn58");
 		}
@@ -896,6 +1236,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn48() {
 		if (btn48 == null) {
 			btn48 = new JButton("");
+			btn48.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("48", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn48, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn48.setPreferredSize(new Dimension(33, 33));
 			btn48.setName("btn48");
 		}
@@ -904,6 +1250,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn47() {
 		if (btn47 == null) {
 			btn47 = new JButton("");
+			btn47.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("47", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn47, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn47.setPreferredSize(new Dimension(33, 33));
 			btn47.setName("btn47");
 		}
@@ -912,6 +1264,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn46() {
 		if (btn46 == null) {
 			btn46 = new JButton("");
+			btn46.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("46", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn46, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn46.setPreferredSize(new Dimension(33, 33));
 			btn46.setName("btn46");
 		}
@@ -920,6 +1278,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn45() {
 		if (btn45 == null) {
 			btn45 = new JButton("");
+			btn45.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("45", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn45, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn45.setPreferredSize(new Dimension(33, 33));
 			btn45.setName("btn45");
 		}
@@ -928,6 +1292,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn44() {
 		if (btn44 == null) {
 			btn44 = new JButton("");
+			btn44.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("44", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn44, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn44.setPreferredSize(new Dimension(33, 33));
 			btn44.setName("btn44");
 		}
@@ -936,6 +1306,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn54() {
 		if (btn54 == null) {
 			btn54 = new JButton("");
+			btn54.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("54", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn54, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn54.setPreferredSize(new Dimension(33, 33));
 			btn54.setName("btn54");
 		}
@@ -944,6 +1320,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn55() {
 		if (btn55 == null) {
 			btn55 = new JButton("");
+			btn55.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("55", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn55, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn55.setPreferredSize(new Dimension(33, 33));
 			btn55.setName("btn55");
 		}
@@ -952,6 +1334,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn65() {
 		if (btn65 == null) {
 			btn65 = new JButton("");
+			btn65.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("65", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn65, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn65.setPreferredSize(new Dimension(33, 33));
 			btn65.setName("btn65");
 		}
@@ -960,6 +1348,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn56() {
 		if (btn56 == null) {
 			btn56 = new JButton("");
+			btn56.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("56", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn56, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn56.setPreferredSize(new Dimension(33, 33));
 			btn56.setName("btn56");
 		}
@@ -968,6 +1362,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn57() {
 		if (btn57 == null) {
 			btn57 = new JButton("");
+			btn57.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("57", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn57, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn57.setPreferredSize(new Dimension(33, 33));
 			btn57.setName("btn57");
 		}
@@ -976,6 +1376,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn67() {
 		if (btn67 == null) {
 			btn67 = new JButton("");
+			btn67.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIControler.activeButton("67", rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+					GUIControler.changeColor(btn67, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
+				}
+			});
 			btn67.setPreferredSize(new Dimension(33, 33));
 			btn67.setName("btn67");
 		}
@@ -1029,26 +1435,36 @@ public class PlayerGUI extends JFrame{
 	private JButton getButton_6_1() {
 		if (btnNextShip == null) {
 			btnNextShip = new JButton("Next Ship");
+			btnNextShip.setEnabled(false);
+			btnNextShip.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIControler.placeTheShip();
+					cbShipSize.removeItem(cbShipSize.getSelectedItem());
+					btnNextShip.setEnabled(false);
+					GUIControler.nextShip();
+				}
+			});
 			btnNextShip.setFont(new Font("Monospaced", Font.BOLD, 12));
 		}
 		return btnNextShip;
 	}
-	private JButton getBtnNewButton() {
-		if (btnNewButton == null) {
-			btnNewButton = new JButton("READY");
-			btnNewButton.addActionListener(new ActionListener() {
+
+	private JButton getBtnReady() {
+		if (btnReady == null) {
+			btnReady = new JButton("READY");
+			btnReady.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					panelEast.setVisible(false);
 					lblPlayerName.setText(txtName.getText());
 					GUIControler.readyForTheGame();
 				}
 			});
-			btnNewButton.setFont(new Font("Monospaced", Font.BOLD, 17));
-			btnNewButton.setMaximumSize(new Dimension(85, 50));
-			btnNewButton.setPreferredSize(new Dimension(85, 50));
-			btnNewButton.setMinimumSize(new Dimension(85, 50));
+			btnReady.setFont(new Font("Monospaced", Font.BOLD, 17));
+			btnReady.setMaximumSize(new Dimension(85, 50));
+			btnReady.setPreferredSize(new Dimension(85, 50));
+			btnReady.setMinimumSize(new Dimension(85, 50));
 		}
-		return btnNewButton;
+		return btnReady;
 	}
 	private JTextArea getConsole() {
 		if (console == null) {
@@ -1651,5 +2067,9 @@ public class PlayerGUI extends JFrame{
 			lblIcon = new JLabel("");
 		}
 		return lblIcon;
+	}
+	
+	static void setNextShipButtonEnable(boolean isEnabled) {
+		btnNextShip.setEnabled(isEnabled);		
 	}
 }

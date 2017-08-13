@@ -133,8 +133,7 @@ public class NewGameGUI extends JFrame {
 			btnStartGame = new JButton("START GAME");
 			btnStartGame.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-						GUIControler.startGame(txtPlayerName.getText());
-					
+						GUIControler.startGame(txtPlayerName.getText());							
 				}
 			});
 			btnStartGame.setFont(new Font("Monospaced", Font.BOLD, 15));
