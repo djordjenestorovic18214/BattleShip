@@ -1,37 +1,32 @@
 package main;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Ship {
 	private int size;
-	private boolean isVertical;
-	private Position initialIndex;
+//	private boolean isVertical;
 	private Position[] positions;
-	private boolean destroyed;
+	private boolean isDestroyed;
 
-	public Ship(int size, boolean isVertical, Position initial) {
-		this.size = size;
-		this.isVertical = isVertical;
-		this.initialIndex = initial;
-
-		positions = new Position[size];
-//		for (int i = 0; i < positions.length; i++) {
-//			Position position;
-//			if (!isVertical) {
-//				positions[i] = new Position(initial.getRow(), initial.getColum() + i);
-//			} else {
-//				positions[i] = new Position(initial.getRow() + i, initial.getColum());
-//			}
-//		}
-
+	public Ship(LinkedList<Position> listOfPositions, int shipSize, boolean isVertical) {
+		size = shipSize;
+//		this.isVertical = isVertical;
+ 		positions = new Position[size];
+ 		for (int i = 0; i < size; i++) {
+ 			positions[i] = listOfPositions.get(i);
+		}
+ 		setDestroyed(false);
 	}
 
+	public Position[] getPositions() {
+		return positions;
+	}
+	
 	public boolean isDestroyed() {
-		for (int i = 0; i < positions.length; i++) {
-			if (positions[i].isHit() == false) {
-				return false;
-			}
-		}
-		return true;
+		return isDestroyed;
+	}
+
+	public void setDestroyed(boolean isDestroyed) {
+		this.isDestroyed = isDestroyed;
 	}
 }

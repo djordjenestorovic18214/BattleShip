@@ -1,11 +1,11 @@
 package main;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Player {
 	private String name;
-	private ArrayList<Ship> StartingPosition=new ArrayList<Ship>();
-	private int winCounter;
+	private LinkedList<Ship> startingPosition = new LinkedList<Ship>();
+//	private int winCounter;
 	
 	public Player(String name) {
 		this.name = name;
@@ -15,5 +15,11 @@ public class Player {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public LinkedList<Ship> getStartingPosition() {
+		return startingPosition;
+	}
+	public void setStartingPosition(LinkedList<Ship> startingPosition) {
+		this.startingPosition = startingPosition;
 	}
 }

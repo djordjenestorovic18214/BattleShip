@@ -14,14 +14,17 @@ import javax.swing.JOptionPane;
 
 import main.Player;
 import main.Position;
+import main.Ship;
 
 public class GUIControler {
 	
 	private static NewGameGUI startingFrame;
 	private static PlayerGUI frame;
-	static int placingCoordinates;
+	//list of positions where are players boats places 
 	private static LinkedList<Position> playerTerritory = new LinkedList<Position>();
-	private LinkedList<Position[]> playerShips;
+	//list of players ships
+	private static LinkedList<Ship> playerShips = new LinkedList<Ship>();
+	private static Player thisPlayer;
 	
 	/**
 	 * Launch the application.
@@ -40,6 +43,7 @@ public class GUIControler {
 		});
 	}
 	
+	//method for exit dialog
 	public static void closeApp() {
 		int option = JOptionPane.showConfirmDialog(startingFrame.getContentPane(), "Are you sure you want to surrender?",
 				"Closing application...", JOptionPane.YES_NO_CANCEL_OPTION);
@@ -47,8 +51,9 @@ public class GUIControler {
 			System.exit(0);
 	}
 	
+	//method for calling main window
 	public static void startGame(String playerName) {
-		Player thisPlayer = new Player(playerName);
+		thisPlayer = new Player(playerName);
 		
 		frame = new PlayerGUI(thisPlayer.getName());
 		frame.setVisible(true);
@@ -59,21 +64,25 @@ public class GUIControler {
 		frame.console.setText("•••" + thisPlayer.getName() + " joined the game!•••\n•Place your ships in battle area!");
 	}
 	
-	public static void invalidPlayerName() {
-		JOptionPane.showMessageDialog(startingFrame.getContentPane(),
-				"You must type your name!", "Error", JOptionPane.ERROR_MESSAGE);
-	}
-
-	public static void findOpponent() {
-		
-		
-		
+	public static void findOpponent(String playerName) {
+		if(!playerName.isEmpty() && playerName != null) {
+			NewGameGUI.changeStatusText(playerName);
+			makeConnection();
+		} else {
+			GUIControler.errorMessage("You must type your name!");
+		}
 	}
 	
+	private static void makeConnection() {
+		
+	}
+
+	//method that writes message in console
 	public static void consoleMessage(String message) {
 		frame.console.append("\n" + message);
 	}
 
+	//method for pulling text from files for menubar items
 	public static String getTextFromFile(String path) {
 		String text = "";
 		 File file = new File(path);
@@ -102,18 +111,15 @@ public class GUIControler {
 	public static void readyForTheGame() {
 		frame.setSize(740, 390);
 		consoleMessage("•••The game has started!•••");
-	}
-
-	public static void placeTheShip() {
-		
-		
+		thisPlayer.setStartingPosition(playerShips);
+		for (Ship ship : playerShips) {
+			for (Position pos : ship.getPositions()) {
+				System.out.println(pos.getName());
+			}
+			System.out.println();
+		}
 	}
 	
-	public static void activeButton(String coordinate, boolean isVertical, String shipSize) {
-		placingCoordinates = Integer.parseInt(coordinate);
-		
-	}
-
 	public static void errorMessage(String message) {
 		JOptionPane.showMessageDialog(startingFrame.getContentPane(),
 			message, "Error", JOptionPane.ERROR_MESSAGE);	
@@ -126,7 +132,7 @@ public class GUIControler {
 		}
 	}
 	
-	public static void changeColor(JButton btn, boolean isVertical, String shipType) {
+	public static void activateButton(JButton btn, boolean isVertical, String shipType) {
 		boolean outOfTerritory = true;
 		PlayerGUI.setNextShipButtonEnable(false);
 		Position selectedField = new Position(btn);
@@ -197,14 +203,22 @@ public class GUIControler {
 		}
 	}
 
-	public static void nextShip() {
-		for (Position pos : playerTerritory) {
-			if(pos.isBusy()) {
+	public static void placeTheShip(String shipType, boolean isVertical) {
+		LinkedList<Position> selectedPositions = new LinkedList<Position>();
+ 		for (Position pos : playerTerritory) {
+			if(pos.isBusy() && !pos.isPlaced()) {
 				pos.getField().setBackground(Color.GREEN);
 				pos.setPlaced(true);
-//				playerShips.add(pos.getField());
+				selectedPositions.add(pos);
 			}
 		}
+ 		
+ 		Ship newShip = new Ship(selectedPositions, selectedPositions.size(), isVertical);
+ 		playerShips.add(newShip);
+ 		
+ 		if(shipType.equals("Battleship(5)"))
+ 			consoleMessage("•You placed your " + shipType.substring(0, shipType.length() - 3));
+ 		else 
+ 			consoleMessage("•You placed your " + shipType.substring(0, shipType.length() - 3) + " ship");
 	}
-	
 }

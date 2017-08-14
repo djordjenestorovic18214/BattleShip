@@ -29,7 +29,7 @@ public class NewGameGUI extends JFrame {
 	private JTextField txtPlayerName;
 	private JButton btnFindOpponent;
 	private JLabel lblStatus;
-	private JTextField txtStatus;
+	private static JTextField txtStatus;
 	private JButton btnStartGame;
 
 	/**
@@ -101,11 +101,7 @@ public class NewGameGUI extends JFrame {
 			btnFindOpponent = new JButton("Find opponent");
 			btnFindOpponent.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if(!txtPlayerName.getText().isEmpty() && txtPlayerName.getText() != null) {
-						txtStatus.setText("Searching...");
-						GUIControler.findOpponent();
-					} else 
-						GUIControler.invalidPlayerName();
+						GUIControler.findOpponent(txtPlayerName.getText());
 				}
 			});
 			btnFindOpponent.setFont(new Font("Monospaced", Font.BOLD, 13));
@@ -139,5 +135,9 @@ public class NewGameGUI extends JFrame {
 			btnStartGame.setFont(new Font("Monospaced", Font.BOLD, 15));
 		}
 		return btnStartGame;
+	}
+	
+	static void changeStatusText(String status) {
+		txtStatus.setText("Searching...");
 	}
 }
