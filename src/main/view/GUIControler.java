@@ -11,6 +11,8 @@ import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import main.Player;
 import main.Position;
@@ -25,11 +27,28 @@ public class GUIControler {
 	//list of players ships
 	private static LinkedList<Ship> playerShips = new LinkedList<Ship>();
 	private static Player thisPlayer;
+	private static boolean gameHasStarted = false;
 	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -58,7 +77,7 @@ public class GUIControler {
 		frame = new PlayerGUI(thisPlayer.getName());
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(startingFrame.getContentPane());
-		frame.setSize(460, 390);
+		frame.setSize(468, 468);
 		startingFrame.setVisible(false);
 
 		frame.console.setText("•••" + thisPlayer.getName() + " joined the game!•••\n•Place your ships in battle area!");
@@ -109,15 +128,10 @@ public class GUIControler {
 	}
 
 	public static void readyForTheGame() {
-		frame.setSize(740, 390);
+		frame.setSize(770, 468);		
 		consoleMessage("•••The game has started!•••");
 		thisPlayer.setStartingPosition(playerShips);
-		for (Ship ship : playerShips) {
-			for (Position pos : ship.getPositions()) {
-				System.out.println(pos.getName());
-			}
-			System.out.println();
-		}
+		gameHasStarted = true;
 	}
 	
 	public static void errorMessage(String message) {
@@ -133,6 +147,8 @@ public class GUIControler {
 	}
 	
 	public static void activateButton(JButton btn, boolean isVertical, String shipType) {
+		if(gameHasStarted) return;
+		
 		boolean outOfTerritory = true;
 		PlayerGUI.setNextShipButtonEnable(false);
 		Position selectedField = new Position(btn);
@@ -149,12 +165,10 @@ public class GUIControler {
 		int shipSize = 0;
 		if(shipType.equals("Patrol(2)"))
 			shipSize = 2;
-		else if(shipType.equals("Frigate(3)")) 
+		else if(shipType.equals("Destroyer(3)")) 
 			shipSize = 3;
-		else if(shipType.equals("Destroyer(4)")) 
+		else if(shipType.equals("Battleship(4)")) 
 			shipSize = 4;
-		else if(shipType.equals("Battleship(5)"))
-			shipSize = 5;
 		
 		selectedField.getField().setBackground(Color.YELLOW);
 		selectedField.setBusy(true);
@@ -216,9 +230,10 @@ public class GUIControler {
  		Ship newShip = new Ship(selectedPositions, selectedPositions.size(), isVertical);
  		playerShips.add(newShip);
  		
- 		if(shipType.equals("Battleship(5)"))
+ 		if(shipType.equals("Battleship(4)")) {
  			consoleMessage("•You placed your " + shipType.substring(0, shipType.length() - 3));
- 		else 
+ 		} else { 
  			consoleMessage("•You placed your " + shipType.substring(0, shipType.length() - 3) + " ship");
-	}
+ 		}
+	}	
 }

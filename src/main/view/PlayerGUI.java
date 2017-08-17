@@ -24,10 +24,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Graphics;
+
 import javax.swing.JTextArea;
 import java.awt.Cursor;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
+
+import javafx.scene.layout.Border;
 
 import javax.swing.border.LineBorder;
 import java.awt.Color;
@@ -35,6 +39,8 @@ import java.awt.Toolkit;
 import java.awt.FlowLayout;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import java.awt.Component;
+import javax.swing.UIManager;
 
 @SuppressWarnings("serial")
 public class PlayerGUI extends JFrame{
@@ -490,8 +496,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn11, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn11.setMinimumSize(new Dimension(10, 10));
-			btn11.setPreferredSize(new Dimension(33, 33));
+			btn11.setMinimumSize(new Dimension(36, 36));
+			btn11.setPreferredSize(new Dimension(36, 36));
 			btn11.setName("btn11");
 		}
 		return btn11;
@@ -503,8 +509,8 @@ public class PlayerGUI extends JFrame{
 				public void actionPerformed(ActionEvent arg0) {
 					GUIControler.activateButton(btn12, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}});
-			btn12.setMinimumSize(new Dimension(10, 10));
-			btn12.setPreferredSize(new Dimension(33, 33));
+			btn12.setMinimumSize(new Dimension(36, 36));
+			btn12.setPreferredSize(new Dimension(36, 36));
 			btn12.setName("btn12");
 		}
 		return btn12;
@@ -517,8 +523,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn13, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn13.setMinimumSize(new Dimension(10, 10));
-			btn13.setPreferredSize(new Dimension(33, 33));
+			btn13.setMinimumSize(new Dimension(36, 36));
+			btn13.setPreferredSize(new Dimension(36, 36));
 			btn13.setName("btn13");
 		}
 		return btn13;
@@ -531,8 +537,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn14, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn14.setMinimumSize(new Dimension(10, 10));
-			btn14.setPreferredSize(new Dimension(33, 33));
+			btn14.setMinimumSize(new Dimension(36, 36));
+			btn14.setPreferredSize(new Dimension(36, 36));
 			btn14.setName("btn14");
 		}
 		return btn14;
@@ -545,8 +551,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn15, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn15.setMinimumSize(new Dimension(10, 10));
-			btn15.setPreferredSize(new Dimension(33, 33));
+			btn15.setMinimumSize(new Dimension(36, 36));
+			btn15.setPreferredSize(new Dimension(36, 36));
 			btn15.setName("btn15");
 		}
 		return btn15;
@@ -559,8 +565,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn16, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn16.setMinimumSize(new Dimension(10, 10));
-			btn16.setPreferredSize(new Dimension(33, 33));
+			btn16.setMinimumSize(new Dimension(36, 36));
+			btn16.setPreferredSize(new Dimension(36, 36));
 			btn16.setName("btn16");
 		}
 		return btn16;
@@ -573,8 +579,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn17, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn17.setMinimumSize(new Dimension(10, 10));
-			btn17.setPreferredSize(new Dimension(33, 33));
+			btn17.setMinimumSize(new Dimension(36, 36));
+			btn17.setPreferredSize(new Dimension(36, 36));
 			btn17.setName("btn17");
 		}
 		return btn17;
@@ -587,8 +593,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn18, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn18.setMinimumSize(new Dimension(1, 10));
-			btn18.setPreferredSize(new Dimension(33, 33));
+			btn18.setMinimumSize(new Dimension(36, 36));
+			btn18.setPreferredSize(new Dimension(36, 36));
 			btn18.setName("btn18");
 		}
 		return btn18;
@@ -601,7 +607,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn21, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn21.setPreferredSize(new Dimension(33, 33));
+			btn21.setMinimumSize(new Dimension(36, 36));
+			btn21.setPreferredSize(new Dimension(36, 36));
 			btn21.setName("btn21");
 		}
 		return btn21;
@@ -609,12 +616,14 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn22() {
 		if (btn22 == null) {
 			btn22 = new JButton("");
+			btn22.setBorder(null);
 			btn22.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					GUIControler.activateButton(btn22, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn22.setPreferredSize(new Dimension(33, 33));
+			btn22.setMinimumSize(new Dimension(36, 36));
+			btn22.setPreferredSize(new Dimension(36, 36));
 			btn22.setName("btn22");
 		}
 		return btn22;
@@ -627,7 +636,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn23, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn23.setPreferredSize(new Dimension(33, 33));
+			btn23.setMinimumSize(new Dimension(36, 36));
+			btn23.setPreferredSize(new Dimension(36, 36));
 			btn23.setName("btn23");
 		}
 		return btn23;
@@ -640,7 +650,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn31, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn31.setPreferredSize(new Dimension(33, 33));
+			btn31.setMinimumSize(new Dimension(36, 36));
+			btn31.setPreferredSize(new Dimension(36, 36));
 			btn31.setName("btn31");
 		}
 		return btn31;
@@ -653,7 +664,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn41, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn41.setPreferredSize(new Dimension(33, 33));
+			btn41.setMinimumSize(new Dimension(36, 36));
+			btn41.setPreferredSize(new Dimension(36, 36));
 			btn41.setName("btn41");
 		}
 		return btn41;
@@ -666,7 +678,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn32, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn32.setPreferredSize(new Dimension(33, 33));
+			btn32.setMinimumSize(new Dimension(36, 36));
+			btn32.setPreferredSize(new Dimension(36, 36));
 			btn32.setName("btn32");
 		}
 		return btn32;
@@ -679,7 +692,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn42, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn42.setPreferredSize(new Dimension(33, 33));
+			btn42.setMinimumSize(new Dimension(36, 36));
+			btn42.setPreferredSize(new Dimension(36, 36));
 			btn42.setName("btn42");
 		}
 		return btn42;
@@ -692,7 +706,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn24, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn24.setPreferredSize(new Dimension(33, 33));
+			btn24.setMinimumSize(new Dimension(36, 36));
+			btn24.setPreferredSize(new Dimension(36, 36));
 			btn24.setName("btn24");
 		}
 		return btn24;
@@ -705,7 +720,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn75, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn75.setPreferredSize(new Dimension(33, 33));
+			btn75.setMinimumSize(new Dimension(36, 36));
+			btn75.setPreferredSize(new Dimension(36, 36));
 			btn75.setName("btn75");
 		}
 		return btn75;
@@ -718,7 +734,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn87, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn87.setPreferredSize(new Dimension(33, 33));
+			btn87.setMinimumSize(new Dimension(36, 36));
+			btn87.setPreferredSize(new Dimension(36, 36));
 			btn87.setName("btn87");
 		}
 		return btn87;
@@ -731,7 +748,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn78, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn78.setPreferredSize(new Dimension(33, 33));
+			btn78.setMinimumSize(new Dimension(36, 36));
+			btn78.setPreferredSize(new Dimension(36, 36));
 			btn78.setName("btn78");
 		}
 		return btn78;
@@ -744,7 +762,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn66, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn66.setPreferredSize(new Dimension(33, 33));
+			btn66.setMinimumSize(new Dimension(36, 36));
+			btn66.setPreferredSize(new Dimension(36, 36));
 			btn66.setName("btn66");
 		}
 		return btn66;
@@ -757,7 +776,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn64, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn64.setPreferredSize(new Dimension(33, 33));
+			btn64.setMinimumSize(new Dimension(36, 36));
+			btn64.setPreferredSize(new Dimension(36, 36));
 			btn64.setName("btn64");
 		}
 		return btn64;
@@ -770,7 +790,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn81, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn81.setPreferredSize(new Dimension(33, 33));
+			btn81.setMinimumSize(new Dimension(36, 36));
+			btn81.setPreferredSize(new Dimension(36, 36));
 			btn81.setName("btn81");
 		}
 		return btn81;
@@ -783,7 +804,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn71, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn71.setPreferredSize(new Dimension(33, 33));
+			btn71.setMinimumSize(new Dimension(36, 36));
+			btn71.setPreferredSize(new Dimension(36, 36));
 			btn71.setName("btn71");
 		}
 		return btn71;
@@ -796,7 +818,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn51, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn51.setPreferredSize(new Dimension(33, 33));
+			btn51.setMinimumSize(new Dimension(36, 36));
+			btn51.setPreferredSize(new Dimension(36, 36));
 			btn51.setName("btn51");
 		}
 		return btn51;
@@ -809,7 +832,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn61, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn61.setPreferredSize(new Dimension(33, 33));
+			btn61.setMinimumSize(new Dimension(36, 36));
+			btn61.setPreferredSize(new Dimension(36, 36));
 			btn61.setName("btn61");
 		}
 		return btn61;
@@ -822,7 +846,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn28, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn28.setPreferredSize(new Dimension(33, 33));
+			btn28.setMinimumSize(new Dimension(36, 36));
+			btn28.setPreferredSize(new Dimension(36, 36));
 			btn28.setName("btn28");
 		}
 		return btn28;
@@ -835,7 +860,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn27, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn27.setPreferredSize(new Dimension(33, 33));
+			btn27.setMinimumSize(new Dimension(36, 36));
+			btn27.setPreferredSize(new Dimension(36, 36));
 			btn27.setName("btn27");
 		}
 		return btn27;
@@ -848,7 +874,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn26, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn26.setPreferredSize(new Dimension(33, 33));
+			btn26.setMinimumSize(new Dimension(36, 36));
+			btn26.setPreferredSize(new Dimension(36, 36));
 			btn26.setName("btn26");
 		}
 		return btn26;
@@ -861,7 +888,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn25, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn25.setPreferredSize(new Dimension(33, 33));
+			btn25.setMinimumSize(new Dimension(36, 36));
+			btn25.setPreferredSize(new Dimension(36, 36));
 			btn25.setName("btn25");
 		}
 		return btn25;
@@ -874,7 +902,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn33, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn33.setPreferredSize(new Dimension(33, 33));
+			btn33.setMinimumSize(new Dimension(36, 36));
+			btn33.setPreferredSize(new Dimension(36, 36));
 			btn33.setName("btn33");
 		}
 		return btn33;
@@ -887,7 +916,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn52, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn52.setPreferredSize(new Dimension(33, 33));
+			btn52.setMinimumSize(new Dimension(36, 36));
+			btn52.setPreferredSize(new Dimension(36, 36));
 			btn52.setName("btn52");
 		}
 		return btn52;
@@ -900,7 +930,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn62, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn62.setPreferredSize(new Dimension(33, 33));
+			btn62.setMinimumSize(new Dimension(36, 36));
+			btn62.setPreferredSize(new Dimension(36, 36));
 			btn62.setName("btn62");
 		}
 		return btn62;
@@ -913,7 +944,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn72, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn72.setPreferredSize(new Dimension(33, 33));
+			btn72.setMinimumSize(new Dimension(36, 36));
+			btn72.setPreferredSize(new Dimension(36, 36));
 			btn72.setName("btn72");
 		}
 		return btn72;
@@ -926,7 +958,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn82, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn82.setPreferredSize(new Dimension(33, 33));
+			btn82.setMinimumSize(new Dimension(36, 36));
+			btn82.setPreferredSize(new Dimension(36, 36));
 			btn82.setName("btn82");
 		}
 		return btn82;
@@ -939,7 +972,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn83, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn83.setPreferredSize(new Dimension(33, 33));
+			btn83.setMinimumSize(new Dimension(36, 36));
+			btn83.setPreferredSize(new Dimension(36, 36));
 			btn83.setName("btn83");
 		}
 		return btn83;
@@ -952,7 +986,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn84, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn84.setPreferredSize(new Dimension(33, 33));
+			btn84.setMinimumSize(new Dimension(36, 36));
+			btn84.setPreferredSize(new Dimension(36, 36));
 			btn84.setName("btn84");
 		}
 		return btn84;
@@ -965,7 +1000,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn85, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn85.setPreferredSize(new Dimension(33, 33));
+			btn85.setMinimumSize(new Dimension(36, 36));
+			btn85.setPreferredSize(new Dimension(36, 36));
 			btn85.setName("btn85");
 		}
 		return btn85;
@@ -978,7 +1014,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn86, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn86.setPreferredSize(new Dimension(33, 33));
+			btn86.setMinimumSize(new Dimension(36, 36));
+			btn86.setPreferredSize(new Dimension(36, 36));
 			btn86.setName("btn86");
 		}
 		return btn86;
@@ -991,7 +1028,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn88, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn88.setPreferredSize(new Dimension(33, 33));
+			btn88.setMinimumSize(new Dimension(36, 36));
+			btn88.setPreferredSize(new Dimension(36, 36));
 			btn88.setName("btn88");
 		}
 		return btn88;
@@ -1004,7 +1042,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn38, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn38.setPreferredSize(new Dimension(33, 33));
+			btn38.setMinimumSize(new Dimension(36, 36));
+			btn38.setPreferredSize(new Dimension(36, 36));
 			btn38.setName("btn38");
 		}
 		return btn38;
@@ -1017,7 +1056,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn37, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn37.setPreferredSize(new Dimension(33, 33));
+			btn37.setMinimumSize(new Dimension(36, 36));
+			btn37.setPreferredSize(new Dimension(36, 36));
 			btn37.setName("btn37");
 		}
 		return btn37;
@@ -1030,7 +1070,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn36, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn36.setPreferredSize(new Dimension(33, 33));
+			btn36.setMinimumSize(new Dimension(36, 36));
+			btn36.setPreferredSize(new Dimension(36, 36));
 			btn36.setName("btn36");
 		}
 		return btn36;
@@ -1043,7 +1084,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn35, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn35.setPreferredSize(new Dimension(33, 33));
+			btn35.setMinimumSize(new Dimension(36, 36));
+			btn35.setPreferredSize(new Dimension(36, 36));
 			btn35.setName("btn35");
 		}
 		return btn35;
@@ -1056,7 +1098,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn34, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn34.setPreferredSize(new Dimension(33, 33));
+			btn34.setMinimumSize(new Dimension(36, 36));
+			btn34.setPreferredSize(new Dimension(36, 36));
 			btn34.setName("btn34");
 		}
 		return btn34;
@@ -1069,7 +1112,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn43, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn43.setPreferredSize(new Dimension(33, 33));
+			btn43.setMinimumSize(new Dimension(36, 36));
+			btn43.setPreferredSize(new Dimension(36, 36));
 			btn43.setName("btn43");
 		}
 		return btn43;
@@ -1082,7 +1126,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn53, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn53.setPreferredSize(new Dimension(33, 33));
+			btn53.setMinimumSize(new Dimension(36, 36));
+			btn53.setPreferredSize(new Dimension(36, 36));
 			btn53.setName("btn53");
 		}
 		return btn53;
@@ -1095,7 +1140,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn63, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn63.setPreferredSize(new Dimension(33, 33));
+			btn63.setMinimumSize(new Dimension(36, 36));
+			btn63.setPreferredSize(new Dimension(36, 36));
 			btn63.setName("btn63");
 		}
 		return btn63;
@@ -1108,7 +1154,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn73, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn73.setPreferredSize(new Dimension(33, 33));
+			btn73.setMinimumSize(new Dimension(36, 36));
+			btn73.setPreferredSize(new Dimension(36, 36));
 			btn73.setName("btn73");
 		}
 		return btn73;
@@ -1121,7 +1168,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn74, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn74.setPreferredSize(new Dimension(33, 33));
+			btn74.setMinimumSize(new Dimension(36, 36));
+			btn74.setPreferredSize(new Dimension(36, 36));
 			btn74.setName("btn74");
 		}
 		return btn74;
@@ -1134,7 +1182,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn76, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn76.setPreferredSize(new Dimension(33, 33));
+			btn76.setMinimumSize(new Dimension(36, 36));
+			btn76.setPreferredSize(new Dimension(36, 36));
 			btn76.setName("btn76");
 		}
 		return btn76;
@@ -1147,7 +1196,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn77, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn77.setPreferredSize(new Dimension(33, 33));
+			btn77.setMinimumSize(new Dimension(36, 36));
+			btn77.setPreferredSize(new Dimension(36, 36));
 			btn77.setName("btn77");
 		}
 		return btn77;
@@ -1160,7 +1210,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn68, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn68.setPreferredSize(new Dimension(33, 33));
+			btn68.setMinimumSize(new Dimension(36, 36));
+			btn68.setPreferredSize(new Dimension(36, 36));
 			btn68.setName("btn68");
 		}
 		return btn68;
@@ -1173,7 +1224,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn58, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn58.setPreferredSize(new Dimension(33, 33));
+			btn58.setMinimumSize(new Dimension(36, 36));
+			btn58.setPreferredSize(new Dimension(36, 36));
 			btn58.setName("btn58");
 		}
 		return btn58;
@@ -1186,7 +1238,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn48, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn48.setPreferredSize(new Dimension(33, 33));
+			btn48.setMinimumSize(new Dimension(36, 36));
+			btn48.setPreferredSize(new Dimension(36, 36));
 			btn48.setName("btn48");
 		}
 		return btn48;
@@ -1199,7 +1252,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn47, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn47.setPreferredSize(new Dimension(33, 33));
+			btn47.setMinimumSize(new Dimension(36, 36));
+			btn47.setPreferredSize(new Dimension(36, 36));
 			btn47.setName("btn47");
 		}
 		return btn47;
@@ -1212,7 +1266,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn46, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn46.setPreferredSize(new Dimension(33, 33));
+			btn46.setMinimumSize(new Dimension(36, 36));
+			btn46.setPreferredSize(new Dimension(36, 36));
 			btn46.setName("btn46");
 		}
 		return btn46;
@@ -1225,7 +1280,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn45, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn45.setPreferredSize(new Dimension(33, 33));
+			btn45.setMinimumSize(new Dimension(36, 36));
+			btn45.setPreferredSize(new Dimension(36, 36));
 			btn45.setName("btn45");
 		}
 		return btn45;
@@ -1238,7 +1294,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn44, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn44.setPreferredSize(new Dimension(33, 33));
+			btn44.setMinimumSize(new Dimension(36, 36));
+			btn44.setPreferredSize(new Dimension(36, 36));
 			btn44.setName("btn44");
 		}
 		return btn44;
@@ -1251,7 +1308,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn54, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn54.setPreferredSize(new Dimension(33, 33));
+			btn54.setMinimumSize(new Dimension(36, 36));
+			btn54.setPreferredSize(new Dimension(36, 36));
 			btn54.setName("btn54");
 		}
 		return btn54;
@@ -1264,7 +1322,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn55, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn55.setPreferredSize(new Dimension(33, 33));
+			btn55.setMinimumSize(new Dimension(36, 36));
+			btn55.setPreferredSize(new Dimension(36, 36));
 			btn55.setName("btn55");
 		}
 		return btn55;
@@ -1277,7 +1336,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn65, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn65.setPreferredSize(new Dimension(33, 33));
+			btn65.setMinimumSize(new Dimension(36, 36));
+			btn65.setPreferredSize(new Dimension(36, 36));
 			btn65.setName("btn65");
 		}
 		return btn65;
@@ -1290,7 +1350,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn56, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn56.setPreferredSize(new Dimension(33, 33));
+			btn56.setMinimumSize(new Dimension(36, 36));
+			btn56.setPreferredSize(new Dimension(36, 36));
 			btn56.setName("btn56");
 		}
 		return btn56;
@@ -1303,7 +1364,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn57, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn57.setPreferredSize(new Dimension(33, 33));
+			btn57.setMinimumSize(new Dimension(36, 36));
+			btn57.setPreferredSize(new Dimension(36, 36));
 			btn57.setName("btn57");
 		}
 		return btn57;
@@ -1316,7 +1378,8 @@ public class PlayerGUI extends JFrame{
 					GUIControler.activateButton(btn67, rdbtnV.isSelected(), cbShipSize.getSelectedItem().toString());
 				}
 			});
-			btn67.setPreferredSize(new Dimension(33, 33));
+			btn67.setMinimumSize(new Dimension(36, 36));
+			btn67.setPreferredSize(new Dimension(36, 36));
 			btn67.setName("btn67");
 		}
 		return btn67;
@@ -1336,11 +1399,9 @@ public class PlayerGUI extends JFrame{
 			cbShipSize.addItem("Patrol(2)");
 			cbShipSize.addItem("Patrol(2)");
 			cbShipSize.addItem("Patrol(2)");
-			cbShipSize.addItem("Patrol(2)");
-			cbShipSize.addItem("Frigate(3)");
-			cbShipSize.addItem("Frigate(3)");
-			cbShipSize.addItem("Destroyer(4)");
-			cbShipSize.addItem("Battleship(5)");
+			cbShipSize.addItem("Destroyer(3)");
+			cbShipSize.addItem("Destroyer(3)");
+			cbShipSize.addItem("Battleship(4)");
 		}
 		return cbShipSize;
 	}
@@ -1389,6 +1450,7 @@ public class PlayerGUI extends JFrame{
 				public void actionPerformed(ActionEvent arg0) {
 					panelEast.setVisible(false);
 					lblPlayerName.setText(txtName.getText());
+					scrollPane.setSize(200, 70);
 					GUIControler.readyForTheGame();
 				}
 			});
@@ -1402,9 +1464,11 @@ public class PlayerGUI extends JFrame{
 	private JTextArea getConsole() {
 		if (console == null) {
 			console = new JTextArea();
+			console.setPreferredSize(new Dimension(4, 20));
+			console.setMinimumSize(new Dimension(4, 20));
 			console.setEditable(false);
 			console.setBorder(null);
-			console.setRows(4);
+			console.setRows(100);
 			console.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			console.setWrapStyleWord(true);
 			console.setLineWrap(true);
@@ -1414,9 +1478,9 @@ public class PlayerGUI extends JFrame{
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setPreferredSize(new Dimension(430, 70));
-			scrollPane.setMinimumSize(new Dimension(460, 70));
-			scrollPane.setSize(460, 70);
+			scrollPane.setPreferredSize(new Dimension(450, 70));
+			scrollPane.setMinimumSize(new Dimension(450, 70));
+			scrollPane.setSize(450, 70);
 			scrollPane.setFont(new Font("Monospaced", Font.BOLD, 11));
 			scrollPane.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "Console", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			scrollPane.setViewportView(getConsole());
@@ -1542,6 +1606,12 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_11() {
 		if (btn_11 == null) {
 			btn_11 = new JButton("");
+			btn_11.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				}
+			});
+			btn_11.setMinimumSize(new Dimension(36, 36));btn_11.setPreferredSize(new Dimension(36, 36));
+
 			btn_11.setName("btn_11");
 		}
 		return btn_11;
@@ -1550,6 +1620,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_12 == null) {
 			btn_12 = new JButton("");
 			btn_12.setName("btn_12");
+			btn_12.setMinimumSize(new Dimension(36, 36));btn_12.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_12;
 	}
@@ -1557,6 +1628,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_13 == null) {
 			btn_13 = new JButton("");
 			btn_13.setName("btn_13");
+			btn_13.setMinimumSize(new Dimension(36, 36));btn_13.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_13;
 	}
@@ -1564,6 +1636,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_14 == null) {
 			btn_14 = new JButton("");
 			btn_14.setName("btn_14");
+			btn_14.setMinimumSize(new Dimension(36, 36));btn_14.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_14;
 	}
@@ -1571,6 +1644,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_15 == null) {
 			btn_15 = new JButton("");
 			btn_15.setName("btn_15");
+			btn_15.setMinimumSize(new Dimension(36, 36));btn_15.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_15;
 	}
@@ -1578,6 +1652,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_16 == null) {
 			btn_16 = new JButton("");
 			btn_16.setName("btn_16");
+			btn_16.setMinimumSize(new Dimension(36, 36));btn_16.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_16;
 	}
@@ -1585,6 +1660,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_17 == null) {
 			btn_17 = new JButton("");
 			btn_17.setName("btn_17");
+			btn_17.setMinimumSize(new Dimension(36, 36));btn_17.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_17;
 	}
@@ -1592,6 +1668,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_18 == null) {
 			btn_18 = new JButton("");
 			btn_18.setName("btn_18");
+			btn_18.setMinimumSize(new Dimension(36, 36));btn_18.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_18;
 	}
@@ -1599,6 +1676,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_21 == null) {
 			btn_21 = new JButton("");
 			btn_21.setName("btn_21");
+			btn_21.setMinimumSize(new Dimension(36, 36));btn_21.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_21;
 	}
@@ -1606,6 +1684,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_22 == null) {
 			btn_22 = new JButton("");
 			btn_22.setName("btn_22");
+			btn_22.setMinimumSize(new Dimension(36, 36));btn_22.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_22;
 	}
@@ -1613,6 +1692,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_23 == null) {
 			btn_23 = new JButton("");
 			btn_23.setName("btn_23");
+			btn_23.setMinimumSize(new Dimension(36, 36));btn_23.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_23;
 	}
@@ -1620,6 +1700,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_24 == null) {
 			btn_24 = new JButton("");
 			btn_24.setName("btn_24");
+			btn_24.setMinimumSize(new Dimension(36, 36));btn_24.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_24;
 	}
@@ -1627,6 +1708,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_25 == null) {
 			btn_25 = new JButton("");
 			btn_25.setName("btn_25");
+			btn_25.setMinimumSize(new Dimension(36, 36));btn_25.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_25;
 	}
@@ -1634,6 +1716,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_26 == null) {
 			btn_26 = new JButton("");
 			btn_26.setName("btn_26");
+			btn_26.setMinimumSize(new Dimension(36, 36));btn_26.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_26;
 	}
@@ -1641,6 +1724,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_27 == null) {
 			btn_27 = new JButton("");
 			btn_27.setName("btn_27");
+			btn_27.setMinimumSize(new Dimension(36, 36));btn_27.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_27;
 	}
@@ -1648,6 +1732,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_28 == null) {
 			btn_28 = new JButton("");
 			btn_28.setName("btn_28");
+			btn_28.setMinimumSize(new Dimension(36, 36));btn_28.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_28;
 	}
@@ -1655,6 +1740,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_31 == null) {
 			btn_31 = new JButton("");
 			btn_31.setName("btn_31");
+			btn_31.setMinimumSize(new Dimension(36, 36));btn_31.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_31;
 	}
@@ -1662,6 +1748,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_32 == null) {
 			btn_32 = new JButton("");
 			btn_32.setName("btn_32");
+			btn_32.setMinimumSize(new Dimension(36, 36));btn_32.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_32;
 	}
@@ -1669,6 +1756,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_33 == null) {
 			btn_33 = new JButton("");
 			btn_33.setName("btn_33");
+			btn_33.setMinimumSize(new Dimension(36, 36));btn_33.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_33;
 	}
@@ -1676,6 +1764,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_34 == null) {
 			btn_34 = new JButton("");
 			btn_34.setName("btn_34");
+			btn_34.setMinimumSize(new Dimension(36, 36));btn_34.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_34;
 	}
@@ -1683,6 +1772,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_35 == null) {
 			btn_35 = new JButton("");
 			btn_35.setName("btn_35");
+			btn_35.setMinimumSize(new Dimension(36, 36));btn_35.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_35;
 	}
@@ -1690,6 +1780,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_36 == null) {
 			btn_36 = new JButton("");
 			btn_36.setName("btn_36");
+			btn_36.setMinimumSize(new Dimension(36, 36));btn_36.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_36;
 	}
@@ -1697,6 +1788,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_37 == null) {
 			btn_37 = new JButton("");
 			btn_37.setName("btn_37");
+			btn_37.setMinimumSize(new Dimension(36, 36));btn_37.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_37;
 	}
@@ -1704,6 +1796,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_38 == null) {
 			btn_38 = new JButton("");
 			btn_38.setName("btn_38");
+			btn_38.setMinimumSize(new Dimension(36, 36));btn_38.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_38;
 	}
@@ -1711,6 +1804,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_41 == null) {
 			btn_41 = new JButton("");
 			btn_41.setName("btn_41");
+			btn_41.setMinimumSize(new Dimension(36, 36));btn_41.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_41;
 	}
@@ -1718,6 +1812,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_42 == null) {
 			btn_42 = new JButton("");
 			btn_42.setName("btn_42");
+			btn_42.setMinimumSize(new Dimension(36, 36));btn_42.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_42;
 	}
@@ -1725,6 +1820,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_43 == null) {
 			btn_43 = new JButton("");
 			btn_43.setName("btn_43");
+			btn_43.setMinimumSize(new Dimension(36, 36));btn_43.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_43;
 	}
@@ -1732,6 +1828,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_44 == null) {
 			btn_44 = new JButton("");
 			btn_44.setName("btn_44");
+			btn_44.setMinimumSize(new Dimension(36, 36));btn_44.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_44;
 	}
@@ -1739,6 +1836,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_45 == null) {
 			btn_45 = new JButton("");
 			btn_45.setName("btn_45");
+			btn_45.setMinimumSize(new Dimension(36, 36));btn_45.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_45;
 	}
@@ -1746,6 +1844,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_46 == null) {
 			btn_46 = new JButton("");
 			btn_46.setName("btn_46");
+			btn_46.setMinimumSize(new Dimension(36, 36));btn_46.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_46;
 	}
@@ -1753,6 +1852,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_47 == null) {
 			btn_47 = new JButton("");
 			btn_47.setName("btn_47");
+			btn_47.setMinimumSize(new Dimension(36, 36));btn_47.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_47;
 	}
@@ -1760,6 +1860,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_48 == null) {
 			btn_48 = new JButton("");
 			btn_48.setName("btn_48");
+			btn_48.setMinimumSize(new Dimension(36, 36));btn_48.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_48;
 	}
@@ -1767,6 +1868,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_51 == null) {
 			btn_51 = new JButton("");
 			btn_51.setName("btn_51");
+			btn_51.setMinimumSize(new Dimension(36, 36));btn_51.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_51;
 	}
@@ -1774,6 +1876,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_52 == null) {
 			btn_52 = new JButton("");
 			btn_52.setName("btn_52");
+			btn_52.setMinimumSize(new Dimension(36, 36));btn_52.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_52;
 	}
@@ -1781,6 +1884,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_53 == null) {
 			btn_53 = new JButton("");
 			btn_53.setName("btn_53");
+			btn_53.setMinimumSize(new Dimension(36, 36));btn_53.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_53;
 	}
@@ -1788,6 +1892,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_54 == null) {
 			btn_54 = new JButton("");
 			btn_54.setName("btn_54");
+			btn_54.setMinimumSize(new Dimension(36, 36));btn_54.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_54;
 	}
@@ -1795,6 +1900,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_55 == null) {
 			btn_55 = new JButton("");
 			btn_55.setName("btn_55");
+			btn_55.setMinimumSize(new Dimension(36, 36));btn_55.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_55;
 	}
@@ -1802,6 +1908,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_56 == null) {
 			btn_56 = new JButton("");
 			btn_56.setName("btn_56");
+			btn_56.setMinimumSize(new Dimension(36, 36));btn_56.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_56;
 	}
@@ -1809,6 +1916,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_57 == null) {
 			btn_57 = new JButton("");
 			btn_57.setName("btn_57");
+			btn_57.setMinimumSize(new Dimension(36, 36));btn_57.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_57;
 	}
@@ -1816,6 +1924,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_58 == null) {
 			btn_58 = new JButton("");
 			btn_58.setName("btn_58");
+			btn_58.setMinimumSize(new Dimension(36, 36));btn_58.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_58;
 	}
@@ -1823,6 +1932,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_61 == null) {
 			btn_61 = new JButton("");
 			btn_61.setName("btn_61");
+			btn_61.setMinimumSize(new Dimension(36, 36));btn_61.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_61;
 	}
@@ -1830,6 +1940,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_62 == null) {
 			btn_62 = new JButton("");
 			btn_62.setName("btn_62");
+			btn_62.setMinimumSize(new Dimension(36, 36));btn_62.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_62;
 	}
@@ -1837,6 +1948,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_63 == null) {
 			btn_63 = new JButton("");
 			btn_63.setName("btn_63");
+			btn_63.setMinimumSize(new Dimension(36, 36));btn_63.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_63;
 	}
@@ -1844,6 +1956,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_64 == null) {
 			btn_64 = new JButton("");
 			btn_64.setName("btn_64");
+			btn_64.setMinimumSize(new Dimension(36, 36));btn_64.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_64;
 	}
@@ -1851,6 +1964,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_65 == null) {
 			btn_65 = new JButton("");
 			btn_65.setName("btn_65");
+			btn_65.setMinimumSize(new Dimension(36, 36));btn_65.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_65;
 	}
@@ -1858,6 +1972,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_66 == null) {
 			btn_66 = new JButton("");
 			btn_66.setName("btn_66");
+			btn_66.setMinimumSize(new Dimension(36, 36));btn_66.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_66;
 	}
@@ -1865,6 +1980,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_67 == null) {
 			btn_67 = new JButton("");
 			btn_67.setName("btn_67");
+			btn_67.setMinimumSize(new Dimension(36, 36));btn_67.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_67;
 	}
@@ -1872,6 +1988,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_68 == null) {
 			btn_68 = new JButton("");
 			btn_68.setName("btn_68");
+			btn_68.setMinimumSize(new Dimension(36, 36));btn_68.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_68;
 	}
@@ -1879,6 +1996,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_71 == null) {
 			btn_71 = new JButton("");
 			btn_71.setName("btn_71");
+			btn_71.setMinimumSize(new Dimension(36, 36));btn_71.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_71;
 	}
@@ -1886,6 +2004,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_72 == null) {
 			btn_72 = new JButton("");
 			btn_72.setName("btn_72");
+			btn_72.setMinimumSize(new Dimension(36, 36));btn_72.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_72;
 	}
@@ -1893,6 +2012,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_73 == null) {
 			btn_73 = new JButton("");
 			btn_73.setName("btn_73");
+			btn_73.setMinimumSize(new Dimension(36, 36));btn_73.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_73;
 	}
@@ -1900,6 +2020,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_74 == null) {
 			btn_74 = new JButton("");
 			btn_74.setName("btn_74");
+			btn_74.setMinimumSize(new Dimension(36, 36));btn_74.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_74;
 	}
@@ -1907,6 +2028,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_75 == null) {
 			btn_75 = new JButton("");
 			btn_75.setName("btn_75");
+			btn_75.setMinimumSize(new Dimension(36, 36));btn_75.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_75;
 	}
@@ -1914,6 +2036,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_76 == null) {
 			btn_76 = new JButton("");
 			btn_76.setName("btn_76");
+			btn_76.setMinimumSize(new Dimension(36, 36));btn_76.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_76;
 	}
@@ -1921,6 +2044,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_77 == null) {
 			btn_77 = new JButton("");
 			btn_77.setName("btn_77");
+			btn_77.setMinimumSize(new Dimension(36, 36));btn_77.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_77;
 	}
@@ -1928,6 +2052,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_78 == null) {
 			btn_78 = new JButton("");
 			btn_78.setName("btn_78");
+			btn_78.setMinimumSize(new Dimension(36, 36));btn_78.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_78;
 	}
@@ -1935,6 +2060,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_81 == null) {
 			btn_81 = new JButton("");
 			btn_81.setName("btn_81");
+			btn_81.setMinimumSize(new Dimension(36, 36));btn_81.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_81;
 	}
@@ -1942,6 +2068,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_82 == null) {
 			btn_82 = new JButton("");
 			btn_82.setName("btn_82");
+			btn_82.setMinimumSize(new Dimension(36, 36));btn_82.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_82;
 	}
@@ -1949,6 +2076,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_83 == null) {
 			btn_83 = new JButton("");
 			btn_83.setName("btn_83");
+			btn_83.setMinimumSize(new Dimension(36, 36));btn_83.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_83;
 	}
@@ -1956,6 +2084,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_84 == null) {
 			btn_84 = new JButton("");
 			btn_84.setName("btn_84");
+			btn_84.setMinimumSize(new Dimension(36, 36));btn_84.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_84;
 	}
@@ -1963,6 +2092,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_85 == null) {
 			btn_85 = new JButton("");
 			btn_85.setName("btn_85");
+			btn_85.setMinimumSize(new Dimension(36, 36));btn_85.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_85;
 	}
@@ -1970,6 +2100,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_86 == null) {
 			btn_86 = new JButton("");
 			btn_86.setName("btn_86");
+			btn_86.setMinimumSize(new Dimension(36, 36));btn_86.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_86;
 	}
@@ -1977,6 +2108,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_87 == null) {
 			btn_87 = new JButton("");
 			btn_87.setName("btn_87");
+			btn_87.setMinimumSize(new Dimension(36, 36));btn_87.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_87;
 	}
@@ -1984,6 +2116,7 @@ public class PlayerGUI extends JFrame{
 		if (btn_88 == null) {
 			btn_88 = new JButton("");
 			btn_88.setName("btn_88");
+			btn_88.setMinimumSize(new Dimension(36, 36));btn_88.setPreferredSize(new Dimension(36, 36));
 		}
 		return btn_88;
 	}
