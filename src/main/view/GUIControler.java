@@ -24,10 +24,16 @@ public class GUIControler {
 	private static PlayerGUI frame;
 	//list of positions where are players boats places 
 	private static LinkedList<Position> playerTerritory = new LinkedList<Position>();
+	private static LinkedList<Position> enemyTerritory = new LinkedList<Position>();
 	//list of players ships
 	private static LinkedList<Ship> playerShips = new LinkedList<Ship>();
 	private static Player thisPlayer;
 	private static boolean gameHasStarted = false;
+	private static Color patrolShipColor = new Color(40, 40, 40);
+	private static Color destroyerShipColor = new Color(20, 20, 20);
+	private static Color battleshipColor = new Color(0, 0, 0);
+	private static Color selectedFieldColor = new Color(236, 239, 43);
+	private static Color defaultFieldColor = new Color(15, 94, 156);
 	
 	/**
 	 * Launch the application.
@@ -77,7 +83,7 @@ public class GUIControler {
 		frame = new PlayerGUI(thisPlayer.getName());
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(startingFrame.getContentPane());
-		frame.setSize(468, 468);
+		frame.setSize(460, 445);
 		startingFrame.setVisible(false);
 
 		frame.console.setText("•••" + thisPlayer.getName() + " joined the game!•••\n•Place your ships in battle area!");
@@ -87,6 +93,9 @@ public class GUIControler {
 		if(!playerName.isEmpty() && playerName != null) {
 			NewGameGUI.changeStatusText(playerName);
 			makeConnection();
+		}
+		else if(playerName.length() > 12) {
+			GUIControler.errorMessage("Your name is too long!");
 		} else {
 			GUIControler.errorMessage("You must type your name!");
 		}
@@ -128,7 +137,7 @@ public class GUIControler {
 	}
 
 	public static void readyForTheGame() {
-		frame.setSize(770, 468);		
+		frame.setSize(750, 445);		
 		consoleMessage("•••The game has started!•••");
 		thisPlayer.setStartingPosition(playerShips);
 		gameHasStarted = true;
@@ -143,11 +152,24 @@ public class GUIControler {
 		for (JButton btn : listOfButtons) {
 			Position p = new Position(btn);
 			playerTerritory.add(p);
+			btn.setBackground(defaultFieldColor);
+			}
+	}
+	public static void populateArrayOfEnemyPositions(LinkedList<JButton> listOfButtons) {
+		for (JButton btn : listOfButtons) {
+			Position p = new Position(btn);
+			enemyTerritory.add(p);
+			btn.setBackground(defaultFieldColor);
 		}
 	}
 	
-	public static void activateButton(JButton btn, boolean isVertical, String shipType) {
+	public static void activateButton(JButton btn, boolean isVertical, String shipType, int numOfShipsNotPlaced) {
 		if(gameHasStarted) return;
+		if(shipType.equals("Choose ship")) {
+			if(numOfShipsNotPlaced == 1) errorMessage("You places all your ships. Click Ready to start the game!");
+			else errorMessage("You must choose type of ship!");
+			return;
+		}
 		
 		boolean outOfTerritory = true;
 		PlayerGUI.setNextShipButtonEnable(false);
@@ -157,20 +179,14 @@ public class GUIControler {
 			if(pos.getField() == btn)
 				selectedField = pos;
 			if(pos.isBusy() == true && pos.isPlaced() == false) {
-				pos.getField().setBackground(null);
+				pos.getField().setBackground(defaultFieldColor);
 				pos.setBusy(false);
 				}
 			}
 		
-		int shipSize = 0;
-		if(shipType.equals("Patrol(2)"))
-			shipSize = 2;
-		else if(shipType.equals("Destroyer(3)")) 
-			shipSize = 3;
-		else if(shipType.equals("Battleship(4)")) 
-			shipSize = 4;
+		int shipSize = returnSizeOfShip(shipType);
 		
-		selectedField.getField().setBackground(Color.YELLOW);
+		selectedField.getField().setBackground(selectedFieldColor);
 		selectedField.setBusy(true);
 		int i = selectedField.getColumn();
 		int j = selectedField.getRow();
@@ -183,7 +199,7 @@ public class GUIControler {
 						if(pos.getColumn() == i && pos.getRow() == (j + 1)) {
 							if(pos.isPlaced())
 								throw new Exception("There is already your ship on that position!");
-							pos.getField().setBackground(Color.YELLOW);
+							pos.getField().setBackground(selectedFieldColor);
 							pos.setBusy(true);
 							PlayerGUI.setNextShipButtonEnable(true);
 							j++;
@@ -197,7 +213,7 @@ public class GUIControler {
 						if(pos.getColumn() == (i + 1) && pos.getRow() == j) {
 							if(pos.isPlaced())
 								throw new Exception("There is already your ship on that position!");
-							pos.getField().setBackground(Color.YELLOW);
+							pos.getField().setBackground(selectedFieldColor);
 							pos.setBusy(true);
 							PlayerGUI.setNextShipButtonEnable(true);
 							i++;
@@ -221,7 +237,11 @@ public class GUIControler {
 		LinkedList<Position> selectedPositions = new LinkedList<Position>();
  		for (Position pos : playerTerritory) {
 			if(pos.isBusy() && !pos.isPlaced()) {
-				pos.getField().setBackground(Color.GREEN);
+				switch(returnSizeOfShip(shipType)) {
+				case 2: pos.getField().setBackground(patrolShipColor);break;
+				case 3: pos.getField().setBackground(destroyerShipColor);break;
+				case 4: pos.getField().setBackground(battleshipColor);break;
+				}
 				pos.setPlaced(true);
 				selectedPositions.add(pos);
 			}
@@ -236,4 +256,8 @@ public class GUIControler {
  			consoleMessage("•You placed your " + shipType.substring(0, shipType.length() - 3) + " ship");
  		}
 	}	
+	
+	public static int returnSizeOfShip(String shipType) {
+		return Integer.parseInt((shipType.split("[()]"))[1]);
+	}
 }

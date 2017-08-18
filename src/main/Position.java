@@ -15,7 +15,10 @@ public class Position {
 		field = button;
 		name = button.getName();
 		column = Integer.parseInt(name.substring(4,5));
-		row = Integer.parseInt(button.getName().substring(3,4));
+		if(button.getName().substring(3,4).contains("_"))
+			row = Integer.parseInt(button.getName().substring(4,5));
+		else
+			row = Integer.parseInt(button.getName().substring(3,4));
 		hit = false;
 		busy = false;
 		placed = false;
