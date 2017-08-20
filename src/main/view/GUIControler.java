@@ -27,6 +27,7 @@ public class GUIControler {
 	private static LinkedList<Position> enemyTerritory = new LinkedList<Position>();
 	//list of players ships
 	private static LinkedList<Ship> playerShips = new LinkedList<Ship>();
+	private static LinkedList<Position> oponentShipsWeAtacked = new LinkedList<Position>();
 	private static Player thisPlayer;
 	private static boolean gameHasStarted = false;
 	private static Color patrolShipColor = new Color(40, 40, 40);
@@ -256,6 +257,23 @@ public class GUIControler {
  			consoleMessage("•You placed your " + shipType.substring(0, shipType.length() - 3) + " ship");
  		}
 	}	
+	
+	public static void attackOponent(JButton btn){
+		for (Position position : oponentShipsWeAtacked) {
+			if(position.getField() == btn){
+				//YOU ALREADY HIT THAT FIELD
+				return;
+			}
+		}
+		for (Position position : enemyTerritory) {
+			if(position.getField() == btn){
+				//SET THE COLOR OF HITTING THE FIELD
+				//YELLOW?
+				oponentShipsWeAtacked.add(position);
+			}
+		}
+		
+	}
 	
 	public static int returnSizeOfShip(String shipType) {
 		return Integer.parseInt((shipType.split("[()]"))[1]);

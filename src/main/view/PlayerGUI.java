@@ -2929,6 +2929,11 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_00() {
 		if (btn_00 == null) {
 			btn_00 = new JButton("");
+			btn_00.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIControler.attackOponent(btn_00);
+				}
+			});
 			btn_00.setMinimumSize(new Dimension(36, 36));
 			btn_00.setPreferredSize(new Dimension(36, 36));
 			btn_00.setName("btn_00");
