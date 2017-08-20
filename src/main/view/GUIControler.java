@@ -32,7 +32,7 @@ public class GUIControler {
 	private static Color patrolShipColor = new Color(40, 40, 40);
 	private static Color destroyerShipColor = new Color(20, 20, 20);
 	private static Color battleshipColor = new Color(0, 0, 0);
-	private static Color selectedFieldColor = new Color(236, 239, 43);
+	private static Color selectedFieldColor = new Color(242, 242, 53);
 	private static Color defaultFieldColor = new Color(15, 94, 156);
 	
 	/**
