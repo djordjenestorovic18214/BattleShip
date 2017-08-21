@@ -84,7 +84,7 @@ public class GUIControler {
 		frame = new PlayerGUI(thisPlayer.getName());
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(startingFrame.getContentPane());
-		frame.setSize(460, 445);
+		frame.setSize(490, 475);
 		startingFrame.setVisible(false);
 
 		frame.console.setText("•••" + thisPlayer.getName() + " joined the game!•••\n•Place your ships in battle area!");
@@ -138,7 +138,7 @@ public class GUIControler {
 	}
 
 	public static void readyForTheGame() {
-		frame.setSize(750, 445);		
+		frame.setSize(810, 475);		
 		consoleMessage("•••The game has started!•••");
 		thisPlayer.setStartingPosition(playerShips);
 		gameHasStarted = true;
@@ -251,8 +251,8 @@ public class GUIControler {
  		Ship newShip = new Ship(selectedPositions, selectedPositions.size(), isVertical);
  		playerShips.add(newShip);
  		
- 		if(shipType.equals("Battleship(4)")) {
- 			consoleMessage("•You placed your " + shipType.substring(0, shipType.length() - 3));
+ 		if(shipType.contains("Battleship")) {
+ 			consoleMessage("•You placed your Battleship");
  		} else { 
  			consoleMessage("•You placed your " + shipType.substring(0, shipType.length() - 3) + " ship");
  		}

@@ -538,7 +538,7 @@ public class PlayerGUI extends JFrame{
 		if (panelCentar == null) {
 			panelCentar = new JPanel();
 			panelCentar.setPreferredSize(new Dimension(260, 260));
-			panelCentar.setLayout(new MigLayout("gap -5.7px -5.7px", "[][][][][][][][][][][130px:n][][][][][][][][][][]", "[][][][][][][][][][][]"));
+			panelCentar.setLayout(new MigLayout("gap -3px -3px", "[][][][][][][][][][][130px:n][][][][][][][][][][]", "[][][][][][][][][][][]"));
 			panelCentar.add(getBtn00(), "cell 0 0");
 			panelCentar.add(getBtn01(), "cell 1 0");
 			panelCentar.add(getBtn02(), "cell 2 0");
