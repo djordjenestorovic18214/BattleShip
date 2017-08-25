@@ -302,7 +302,7 @@ public class PlayerGUI extends JFrame{
 		populateListOfButtons();
 		populateListOfEnemyButtons();
 		GUIControler.populateArrayOfPositions(playerTerritory);
-		GUIControler.populateArrayOfPositions(enemyTerritory);
+		GUIControler.populateArrayOfEnemyPositions(enemyTerritory);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {

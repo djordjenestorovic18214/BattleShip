@@ -35,6 +35,8 @@ public class GUIControler {
 	private static Color battleshipColor = new Color(0, 0, 0);
 	private static Color selectedFieldColor = new Color(242, 242, 53);
 	private static Color defaultFieldColor = new Color(15, 94, 156);
+	private static Color waterHitColor = new Color(0, 51, 51);
+	private static Color shipHitColor = new Color(204, 102, 0);
 	
 	/**
 	 * Launch the application.
@@ -259,17 +261,23 @@ public class GUIControler {
 	}	
 	
 	public static void attackOponent(JButton btn){
-		for (Position position : oponentShipsWeAtacked) {
+		for (Position position : enemyTerritory) {
 			if(position.getField() == btn){
-				//YOU ALREADY HIT THAT FIELD
-				return;
+				if(position.getField().getBackground().equals(shipHitColor) || position.getField().getBackground().equals(waterHitColor)){
+					errorMessage("You already hit that field!");
+				}else{
+					break;
+				}
 			}
 		}
 		for (Position position : enemyTerritory) {
 			if(position.getField() == btn){
-				//SET THE COLOR OF HITTING THE FIELD
-				//YELLOW?
-				oponentShipsWeAtacked.add(position);
+				if(position.isHit()){
+					position.getField().setBackground(shipHitColor);
+				}else{
+					position.getField().setBackground(waterHitColor);
+				}
+				break;
 			}
 		}
 		
