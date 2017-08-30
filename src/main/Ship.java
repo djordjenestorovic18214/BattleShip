@@ -1,11 +1,12 @@
 package main;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Ship {
+public class Ship  implements Serializable {
 	private int size;
 //	private boolean isVertical;
-	private Position[] positions;
+	public Position[] positions;
 	private boolean isDestroyed;
 
 	public Ship(LinkedList<Position> listOfPositions, int shipSize, boolean isVertical) {

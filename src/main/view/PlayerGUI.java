@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -1735,7 +1736,21 @@ public class PlayerGUI extends JFrame{
 					panelEast.setVisible(false);
 					lblPlayerName.setText(txtName.getText());
 					scrollPane.setSize(200, 70);
-					GUIControler.readyForTheGame();
+					try {
+						GUIControler.readyForTheGame();
+						String first=GUIControler.inStreamFromClientm.readLine();
+					    
+					if(first.startsWith("SEC")){
+						GUIControler.notificationMessage("You play second! Wait !");
+						GUIControler.waitMove();
+					}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			});
 			btnReady.setFont(new Font("Monospaced", Font.BOLD, 17));
@@ -1892,6 +1907,15 @@ public class PlayerGUI extends JFrame{
 			btn_11 = new JButton("");
 			btn_11.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_11);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			});
 			btn_11.setMinimumSize(new Dimension(36, 36));btn_11.setPreferredSize(new Dimension(36, 36));
@@ -1903,6 +1927,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_12() {
 		if (btn_12 == null) {
 			btn_12 = new JButton("");
+			btn_12.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_12);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_12.setName("btn_12");
 			btn_12.setMinimumSize(new Dimension(36, 36));btn_12.setPreferredSize(new Dimension(36, 36));
 		}
@@ -1911,6 +1948,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_13() {
 		if (btn_13 == null) {
 			btn_13 = new JButton("");
+			btn_13.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_13);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_13.setName("btn_13");
 			btn_13.setMinimumSize(new Dimension(36, 36));btn_13.setPreferredSize(new Dimension(36, 36));
 		}
@@ -1919,6 +1969,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_14() {
 		if (btn_14 == null) {
 			btn_14 = new JButton("");
+			btn_14.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_14);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_14.setName("btn_14");
 			btn_14.setMinimumSize(new Dimension(36, 36));btn_14.setPreferredSize(new Dimension(36, 36));
 		}
@@ -1927,6 +1990,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_15() {
 		if (btn_15 == null) {
 			btn_15 = new JButton("");
+			btn_15.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_15);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_15.setName("btn_15");
 			btn_15.setMinimumSize(new Dimension(36, 36));btn_15.setPreferredSize(new Dimension(36, 36));
 		}
@@ -1935,6 +2011,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_16() {
 		if (btn_16 == null) {
 			btn_16 = new JButton("");
+			btn_16.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_16);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_16.setName("btn_16");
 			btn_16.setMinimumSize(new Dimension(36, 36));btn_16.setPreferredSize(new Dimension(36, 36));
 		}
@@ -1943,6 +2032,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_17() {
 		if (btn_17 == null) {
 			btn_17 = new JButton("");
+			btn_17.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_17);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_17.setName("btn_17");
 			btn_17.setMinimumSize(new Dimension(36, 36));btn_17.setPreferredSize(new Dimension(36, 36));
 		}
@@ -1951,6 +2053,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_18() {
 		if (btn_18 == null) {
 			btn_18 = new JButton("");
+			btn_18.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_18);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_18.setName("btn_18");
 			btn_18.setMinimumSize(new Dimension(36, 36));btn_18.setPreferredSize(new Dimension(36, 36));
 		}
@@ -1959,6 +2074,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_21() {
 		if (btn_21 == null) {
 			btn_21 = new JButton("");
+			btn_21.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_21);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_21.setName("btn_21");
 			btn_21.setMinimumSize(new Dimension(36, 36));btn_21.setPreferredSize(new Dimension(36, 36));
 		}
@@ -1967,6 +2095,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_22() {
 		if (btn_22 == null) {
 			btn_22 = new JButton("");
+			btn_22.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_22);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_22.setName("btn_22");
 			btn_22.setMinimumSize(new Dimension(36, 36));btn_22.setPreferredSize(new Dimension(36, 36));
 		}
@@ -1975,6 +2116,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_23() {
 		if (btn_23 == null) {
 			btn_23 = new JButton("");
+			btn_23.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_23);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_23.setName("btn_23");
 			btn_23.setMinimumSize(new Dimension(36, 36));btn_23.setPreferredSize(new Dimension(36, 36));
 		}
@@ -1983,6 +2137,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_24() {
 		if (btn_24 == null) {
 			btn_24 = new JButton("");
+			btn_24.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_24);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_24.setName("btn_24");
 			btn_24.setMinimumSize(new Dimension(36, 36));btn_24.setPreferredSize(new Dimension(36, 36));
 		}
@@ -1991,6 +2158,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_25() {
 		if (btn_25 == null) {
 			btn_25 = new JButton("");
+			btn_25.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_25);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_25.setName("btn_25");
 			btn_25.setMinimumSize(new Dimension(36, 36));btn_25.setPreferredSize(new Dimension(36, 36));
 		}
@@ -1999,6 +2179,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_26() {
 		if (btn_26 == null) {
 			btn_26 = new JButton("");
+			btn_26.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_26);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_26.setName("btn_26");
 			btn_26.setMinimumSize(new Dimension(36, 36));btn_26.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2007,6 +2200,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_27() {
 		if (btn_27 == null) {
 			btn_27 = new JButton("");
+			btn_27.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_27);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_27.setName("btn_27");
 			btn_27.setMinimumSize(new Dimension(36, 36));btn_27.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2015,6 +2221,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_28() {
 		if (btn_28 == null) {
 			btn_28 = new JButton("");
+			btn_28.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_28);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_28.setName("btn_28");
 			btn_28.setMinimumSize(new Dimension(36, 36));btn_28.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2023,6 +2242,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_31() {
 		if (btn_31 == null) {
 			btn_31 = new JButton("");
+			btn_31.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_31);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_31.setName("btn_31");
 			btn_31.setMinimumSize(new Dimension(36, 36));btn_31.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2031,6 +2263,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_32() {
 		if (btn_32 == null) {
 			btn_32 = new JButton("");
+			btn_32.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_32);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_32.setName("btn_32");
 			btn_32.setMinimumSize(new Dimension(36, 36));btn_32.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2039,6 +2284,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_33() {
 		if (btn_33 == null) {
 			btn_33 = new JButton("");
+			btn_33.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_33);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_33.setName("btn_33");
 			btn_33.setMinimumSize(new Dimension(36, 36));btn_33.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2047,6 +2305,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_34() {
 		if (btn_34 == null) {
 			btn_34 = new JButton("");
+			btn_34.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_34);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_34.setName("btn_34");
 			btn_34.setMinimumSize(new Dimension(36, 36));btn_34.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2055,6 +2326,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_35() {
 		if (btn_35 == null) {
 			btn_35 = new JButton("");
+			btn_35.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_35);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_35.setName("btn_35");
 			btn_35.setMinimumSize(new Dimension(36, 36));btn_35.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2063,6 +2347,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_36() {
 		if (btn_36 == null) {
 			btn_36 = new JButton("");
+			btn_36.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_36);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_36.setName("btn_36");
 			btn_36.setMinimumSize(new Dimension(36, 36));btn_36.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2071,6 +2368,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_37() {
 		if (btn_37 == null) {
 			btn_37 = new JButton("");
+			btn_37.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_37);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_37.setName("btn_37");
 			btn_37.setMinimumSize(new Dimension(36, 36));btn_37.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2079,6 +2389,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_38() {
 		if (btn_38 == null) {
 			btn_38 = new JButton("");
+			btn_38.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_38);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_38.setName("btn_38");
 			btn_38.setMinimumSize(new Dimension(36, 36));btn_38.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2087,6 +2410,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_41() {
 		if (btn_41 == null) {
 			btn_41 = new JButton("");
+			btn_41.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_41);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_41.setName("btn_41");
 			btn_41.setMinimumSize(new Dimension(36, 36));btn_41.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2095,6 +2431,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_42() {
 		if (btn_42 == null) {
 			btn_42 = new JButton("");
+			btn_42.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_42);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_42.setName("btn_42");
 			btn_42.setMinimumSize(new Dimension(36, 36));btn_42.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2103,6 +2452,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_43() {
 		if (btn_43 == null) {
 			btn_43 = new JButton("");
+			btn_43.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_43);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_43.setName("btn_43");
 			btn_43.setMinimumSize(new Dimension(36, 36));btn_43.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2111,6 +2473,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_44() {
 		if (btn_44 == null) {
 			btn_44 = new JButton("");
+			btn_44.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_44);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_44.setName("btn_44");
 			btn_44.setMinimumSize(new Dimension(36, 36));btn_44.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2119,6 +2494,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_45() {
 		if (btn_45 == null) {
 			btn_45 = new JButton("");
+			btn_45.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_45);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_45.setName("btn_45");
 			btn_45.setMinimumSize(new Dimension(36, 36));btn_45.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2127,6 +2515,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_46() {
 		if (btn_46 == null) {
 			btn_46 = new JButton("");
+			btn_46.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_46);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_46.setName("btn_46");
 			btn_46.setMinimumSize(new Dimension(36, 36));btn_46.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2135,6 +2536,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_47() {
 		if (btn_47 == null) {
 			btn_47 = new JButton("");
+			btn_47.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_47);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_47.setName("btn_47");
 			btn_47.setMinimumSize(new Dimension(36, 36));btn_47.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2143,6 +2557,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_48() {
 		if (btn_48 == null) {
 			btn_48 = new JButton("");
+			btn_48.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_48);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_48.setName("btn_48");
 			btn_48.setMinimumSize(new Dimension(36, 36));btn_48.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2151,6 +2578,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_51() {
 		if (btn_51 == null) {
 			btn_51 = new JButton("");
+			btn_51.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_51);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_51.setName("btn_51");
 			btn_51.setMinimumSize(new Dimension(36, 36));btn_51.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2159,6 +2599,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_52() {
 		if (btn_52 == null) {
 			btn_52 = new JButton("");
+			btn_52.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_52);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_52.setName("btn_52");
 			btn_52.setMinimumSize(new Dimension(36, 36));btn_52.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2167,6 +2620,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_53() {
 		if (btn_53 == null) {
 			btn_53 = new JButton("");
+			btn_53.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_53);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_53.setName("btn_53");
 			btn_53.setMinimumSize(new Dimension(36, 36));btn_53.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2175,6 +2641,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_54() {
 		if (btn_54 == null) {
 			btn_54 = new JButton("");
+			btn_54.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_54);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_54.setName("btn_54");
 			btn_54.setMinimumSize(new Dimension(36, 36));btn_54.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2183,6 +2662,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_55() {
 		if (btn_55 == null) {
 			btn_55 = new JButton("");
+			btn_55.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_55);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_55.setName("btn_55");
 			btn_55.setMinimumSize(new Dimension(36, 36));btn_55.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2191,6 +2683,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_56() {
 		if (btn_56 == null) {
 			btn_56 = new JButton("");
+			btn_56.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_56);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_56.setName("btn_56");
 			btn_56.setMinimumSize(new Dimension(36, 36));btn_56.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2199,6 +2704,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_57() {
 		if (btn_57 == null) {
 			btn_57 = new JButton("");
+			btn_57.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_57);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_57.setName("btn_57");
 			btn_57.setMinimumSize(new Dimension(36, 36));btn_57.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2207,6 +2725,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_58() {
 		if (btn_58 == null) {
 			btn_58 = new JButton("");
+			btn_58.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_58);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_58.setName("btn_58");
 			btn_58.setMinimumSize(new Dimension(36, 36));btn_58.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2215,6 +2746,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_61() {
 		if (btn_61 == null) {
 			btn_61 = new JButton("");
+			btn_61.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_61);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_61.setName("btn_61");
 			btn_61.setMinimumSize(new Dimension(36, 36));btn_61.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2223,6 +2767,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_62() {
 		if (btn_62 == null) {
 			btn_62 = new JButton("");
+			btn_62.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_62);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_62.setName("btn_62");
 			btn_62.setMinimumSize(new Dimension(36, 36));btn_62.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2231,6 +2788,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_63() {
 		if (btn_63 == null) {
 			btn_63 = new JButton("");
+			btn_63.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_63);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_63.setName("btn_63");
 			btn_63.setMinimumSize(new Dimension(36, 36));btn_63.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2239,6 +2809,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_64() {
 		if (btn_64 == null) {
 			btn_64 = new JButton("");
+			btn_64.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_64);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_64.setName("btn_64");
 			btn_64.setMinimumSize(new Dimension(36, 36));btn_64.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2247,6 +2830,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_65() {
 		if (btn_65 == null) {
 			btn_65 = new JButton("");
+			btn_65.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_65);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_65.setName("btn_65");
 			btn_65.setMinimumSize(new Dimension(36, 36));btn_65.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2255,6 +2851,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_66() {
 		if (btn_66 == null) {
 			btn_66 = new JButton("");
+			btn_66.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_66);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_66.setName("btn_66");
 			btn_66.setMinimumSize(new Dimension(36, 36));btn_66.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2263,6 +2872,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_67() {
 		if (btn_67 == null) {
 			btn_67 = new JButton("");
+			btn_67.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_67);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_67.setName("btn_67");
 			btn_67.setMinimumSize(new Dimension(36, 36));btn_67.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2271,6 +2893,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_68() {
 		if (btn_68 == null) {
 			btn_68 = new JButton("");
+			btn_68.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_68);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_68.setName("btn_68");
 			btn_68.setMinimumSize(new Dimension(36, 36));btn_68.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2279,6 +2914,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_71() {
 		if (btn_71 == null) {
 			btn_71 = new JButton("");
+			btn_71.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_71);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_71.setName("btn_71");
 			btn_71.setMinimumSize(new Dimension(36, 36));btn_71.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2287,6 +2935,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_72() {
 		if (btn_72 == null) {
 			btn_72 = new JButton("");
+			btn_72.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_72);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_72.setName("btn_72");
 			btn_72.setMinimumSize(new Dimension(36, 36));btn_72.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2295,6 +2956,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_73() {
 		if (btn_73 == null) {
 			btn_73 = new JButton("");
+			btn_73.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_73);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_73.setName("btn_73");
 			btn_73.setMinimumSize(new Dimension(36, 36));btn_73.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2303,6 +2977,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_74() {
 		if (btn_74 == null) {
 			btn_74 = new JButton("");
+			btn_74.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_74);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_74.setName("btn_74");
 			btn_74.setMinimumSize(new Dimension(36, 36));btn_74.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2311,6 +2998,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_75() {
 		if (btn_75 == null) {
 			btn_75 = new JButton("");
+			btn_75.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_75);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_75.setName("btn_75");
 			btn_75.setMinimumSize(new Dimension(36, 36));btn_75.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2319,6 +3019,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_76() {
 		if (btn_76 == null) {
 			btn_76 = new JButton("");
+			btn_76.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_76);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_76.setName("btn_76");
 			btn_76.setMinimumSize(new Dimension(36, 36));btn_76.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2327,6 +3040,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_77() {
 		if (btn_77 == null) {
 			btn_77 = new JButton("");
+			btn_77.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_77);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_77.setName("btn_77");
 			btn_77.setMinimumSize(new Dimension(36, 36));btn_77.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2335,6 +3061,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_78() {
 		if (btn_78 == null) {
 			btn_78 = new JButton("");
+			btn_78.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_78);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_78.setName("btn_78");
 			btn_78.setMinimumSize(new Dimension(36, 36));btn_78.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2343,6 +3082,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_81() {
 		if (btn_81 == null) {
 			btn_81 = new JButton("");
+			btn_81.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_81);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_81.setName("btn_81");
 			btn_81.setMinimumSize(new Dimension(36, 36));btn_81.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2351,6 +3103,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_82() {
 		if (btn_82 == null) {
 			btn_82 = new JButton("");
+			btn_82.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_82);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_82.setName("btn_82");
 			btn_82.setMinimumSize(new Dimension(36, 36));btn_82.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2359,6 +3124,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_83() {
 		if (btn_83 == null) {
 			btn_83 = new JButton("");
+			btn_83.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_83);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_83.setName("btn_83");
 			btn_83.setMinimumSize(new Dimension(36, 36));btn_83.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2367,6 +3145,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_84() {
 		if (btn_84 == null) {
 			btn_84 = new JButton("");
+			btn_84.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_84);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_84.setName("btn_84");
 			btn_84.setMinimumSize(new Dimension(36, 36));btn_84.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2375,6 +3166,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_85() {
 		if (btn_85 == null) {
 			btn_85 = new JButton("");
+			btn_85.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_85);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_85.setName("btn_85");
 			btn_85.setMinimumSize(new Dimension(36, 36));btn_85.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2383,6 +3187,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_86() {
 		if (btn_86 == null) {
 			btn_86 = new JButton("");
+			btn_86.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_86);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_86.setName("btn_86");
 			btn_86.setMinimumSize(new Dimension(36, 36));btn_86.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2391,6 +3208,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_87() {
 		if (btn_87 == null) {
 			btn_87 = new JButton("");
+			btn_87.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_87);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_87.setName("btn_87");
 			btn_87.setMinimumSize(new Dimension(36, 36));btn_87.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2399,6 +3229,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_88() {
 		if (btn_88 == null) {
 			btn_88 = new JButton("");
+			btn_88.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_88);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_88.setName("btn_88");
 			btn_88.setMinimumSize(new Dimension(36, 36));btn_88.setPreferredSize(new Dimension(36, 36));
 		}
@@ -2931,7 +3774,16 @@ public class PlayerGUI extends JFrame{
 			btn_00 = new JButton("");
 			btn_00.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					GUIControler.attackOponent(btn_00);
+					try {
+						
+						GUIControler.attackOponent(btn_00);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			});
 			btn_00.setMinimumSize(new Dimension(36, 36));
@@ -2943,6 +3795,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_01() {
 		if (btn_01 == null) {
 			btn_01 = new JButton("");
+			btn_01.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_01);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_01.setMinimumSize(new Dimension(36, 36));
 			btn_01.setPreferredSize(new Dimension(36, 36));
 			btn_01.setName("btn_01");
@@ -2952,6 +3817,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_02() {
 		if (btn_02 == null) {
 			btn_02 = new JButton("");
+			btn_02.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_02);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_02.setMinimumSize(new Dimension(36, 36));
 			btn_02.setPreferredSize(new Dimension(36, 36));
 			btn_02.setName("btn_02");
@@ -2961,6 +3839,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_03() {
 		if (btn_03 == null) {
 			btn_03 = new JButton("");
+			btn_03.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_03);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_03.setMinimumSize(new Dimension(36, 36));
 			btn_03.setPreferredSize(new Dimension(36, 36));
 			btn_03.setName("btn_03");
@@ -2970,6 +3861,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_04() {
 		if (btn_04 == null) {
 			btn_04 = new JButton("");
+			btn_04.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_04);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_04.setMinimumSize(new Dimension(36, 36));
 			btn_04.setPreferredSize(new Dimension(36, 36));
 			btn_04.setName("btn_04");
@@ -2979,6 +3883,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_05() {
 		if (btn_05 == null) {
 			btn_05 = new JButton("");
+			btn_05.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_05);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_05.setMinimumSize(new Dimension(36, 36));
 			btn_05.setPreferredSize(new Dimension(36, 36));
 			btn_05.setName("btn_05");
@@ -2988,6 +3905,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_06() {
 		if (btn_06 == null) {
 			btn_06 = new JButton("");
+			btn_06.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_06);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_06.setMinimumSize(new Dimension(36, 36));
 			btn_06.setPreferredSize(new Dimension(36, 36));
 			btn_06.setName("btn_06");
@@ -2997,6 +3927,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_07() {
 		if (btn_07 == null) {
 			btn_07 = new JButton("");
+			btn_07.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_07);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_07.setMinimumSize(new Dimension(36, 36));
 			btn_07.setPreferredSize(new Dimension(36, 36));
 			btn_07.setName("btn_07");
@@ -3006,6 +3949,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_08() {
 		if (btn_08 == null) {
 			btn_08 = new JButton("");
+			btn_08.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_08);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_08.setMinimumSize(new Dimension(36, 36));
 			btn_08.setPreferredSize(new Dimension(36, 36));
 			btn_08.setName("btn_08");
@@ -3015,6 +3971,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_09() {
 		if (btn_09 == null) {
 			btn_09 = new JButton("");
+			btn_09.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_09);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_09.setMinimumSize(new Dimension(36, 36));
 			btn_09.setPreferredSize(new Dimension(36, 36));
 			btn_09.setName("btn_09");
@@ -3024,6 +3993,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_10() {
 		if (btn_10 == null) {
 			btn_10 = new JButton("");
+			btn_10.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_10);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_10.setMinimumSize(new Dimension(36, 36));
 			btn_10.setPreferredSize(new Dimension(36, 36));
 			btn_10.setName("btn_10");
@@ -3033,6 +4015,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_20() {
 		if (btn_20 == null) {
 			btn_20 = new JButton("");
+			btn_20.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_20);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_20.setMinimumSize(new Dimension(36, 36));
 			btn_20.setPreferredSize(new Dimension(36, 36));
 			btn_20.setName("btn_20");
@@ -3042,6 +4037,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_30() {
 		if (btn_30 == null) {
 			btn_30 = new JButton("");
+			btn_30.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_30);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_30.setMinimumSize(new Dimension(36, 36));
 			btn_30.setPreferredSize(new Dimension(36, 36));
 			btn_30.setName("btn_30");
@@ -3051,6 +4059,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_40() {
 		if (btn_40 == null) {
 			btn_40 = new JButton("");
+			btn_40.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_40);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_40.setMinimumSize(new Dimension(36, 36));
 			btn_40.setPreferredSize(new Dimension(36, 36));
 			btn_40.setName("btn_40");
@@ -3060,6 +4081,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_50() {
 		if (btn_50 == null) {
 			btn_50 = new JButton("");
+			btn_50.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_50);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_50.setMinimumSize(new Dimension(36, 36));
 			btn_50.setPreferredSize(new Dimension(36, 36));
 			btn_50.setName("btn_50");
@@ -3069,6 +4103,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_60() {
 		if (btn_60 == null) {
 			btn_60 = new JButton("");
+			btn_60.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_60);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_60.setMinimumSize(new Dimension(36, 36));
 			btn_60.setPreferredSize(new Dimension(36, 36));
 			btn_60.setName("btn_60");
@@ -3078,6 +4125,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_70() {
 		if (btn_70 == null) {
 			btn_70 = new JButton("");
+			btn_70.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_70);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_70.setMinimumSize(new Dimension(36, 36));
 			btn_70.setPreferredSize(new Dimension(36, 36));
 			btn_70.setName("btn_70");
@@ -3087,7 +4147,21 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_80() {
 		if (btn_80 == null) {
 			btn_80 = new JButton("");
+			btn_80.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_80);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_80.setMinimumSize(new Dimension(36, 36));
+
 			btn_80.setPreferredSize(new Dimension(36, 36));
 			btn_80.setName("btn_80");
 		}
@@ -3096,6 +4170,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_90() {
 		if (btn_90 == null) {
 			btn_90 = new JButton("");
+			btn_90.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_90);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_90.setMinimumSize(new Dimension(36, 36));
 			btn_90.setPreferredSize(new Dimension(36, 36));
 			btn_90.setName("btn_90");
@@ -3105,6 +4192,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_91() {
 		if (btn_91 == null) {
 			btn_91 = new JButton("");
+			btn_91.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_91);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_91.setMinimumSize(new Dimension(36, 36));
 			btn_91.setPreferredSize(new Dimension(36, 36));
 			btn_91.setName("btn_91");
@@ -3114,6 +4214,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_92() {
 		if (btn_92 == null) {
 			btn_92 = new JButton("");
+			btn_92.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_92);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_92.setMinimumSize(new Dimension(36, 36));
 			btn_92.setPreferredSize(new Dimension(36, 36));
 			btn_92.setName("btn_92");
@@ -3123,6 +4236,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_93() {
 		if (btn_93 == null) {
 			btn_93 = new JButton("");
+			btn_93.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_93);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_93.setMinimumSize(new Dimension(36, 36));
 			btn_93.setPreferredSize(new Dimension(36, 36));
 			btn_93.setName("btn_93");
@@ -3132,6 +4258,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_94() {
 		if (btn_94 == null) {
 			btn_94 = new JButton("");
+			btn_94.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_94);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_94.setMinimumSize(new Dimension(36, 36));
 			btn_94.setPreferredSize(new Dimension(36, 36));
 			btn_94.setName("btn_94");
@@ -3141,6 +4280,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_95() {
 		if (btn_95 == null) {
 			btn_95 = new JButton("");
+			btn_95.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_95);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_95.setMinimumSize(new Dimension(36, 36));
 			btn_95.setPreferredSize(new Dimension(36, 36));
 			btn_95.setName("btn_95");
@@ -3150,6 +4302,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_96() {
 		if (btn_96 == null) {
 			btn_96 = new JButton("");
+			btn_96.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_96);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_96.setMinimumSize(new Dimension(36, 36));
 			btn_96.setPreferredSize(new Dimension(36, 36));
 			btn_96.setName("btn_96");
@@ -3159,6 +4324,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_97() {
 		if (btn_97 == null) {
 			btn_97 = new JButton("");
+			btn_97.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_97);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_97.setMinimumSize(new Dimension(36, 36));
 			btn_97.setPreferredSize(new Dimension(36, 36));
 			btn_97.setName("btn_97");
@@ -3168,6 +4346,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_98() {
 		if (btn_98 == null) {
 			btn_98 = new JButton("");
+			btn_98.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_98);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_98.setMinimumSize(new Dimension(36, 36));
 			btn_98.setPreferredSize(new Dimension(36, 36));
 			btn_98.setName("btn_98");
@@ -3177,6 +4368,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_19() {
 		if (btn_19 == null) {
 			btn_19 = new JButton("");
+			btn_19.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_19);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_19.setMinimumSize(new Dimension(36, 36));
 			btn_19.setPreferredSize(new Dimension(36, 36));
 			btn_19.setName("btn_19");
@@ -3186,6 +4390,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_29() {
 		if (btn_29 == null) {
 			btn_29 = new JButton("");
+			btn_29.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_29);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_29.setMinimumSize(new Dimension(36, 36));
 			btn_29.setPreferredSize(new Dimension(36, 36));
 			btn_29.setName("btn_29");
@@ -3195,6 +4412,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_39() {
 		if (btn_39 == null) {
 			btn_39 = new JButton("");
+			btn_39.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_39);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_39.setMinimumSize(new Dimension(36, 36));
 			btn_39.setPreferredSize(new Dimension(36, 36));
 			btn_39.setName("btn_39");
@@ -3204,6 +4434,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_49() {
 		if (btn_49 == null) {
 			btn_49 = new JButton("");
+			btn_49.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_49);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_49.setMinimumSize(new Dimension(36, 36));
 			btn_49.setPreferredSize(new Dimension(36, 36));
 			btn_49.setName("btn_49");
@@ -3213,6 +4456,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_59() {
 		if (btn_59 == null) {
 			btn_59 = new JButton("");
+			btn_59.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_59);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_59.setMinimumSize(new Dimension(36, 36));
 			btn_59.setPreferredSize(new Dimension(36, 36));
 			btn_59.setName("btn_59");
@@ -3222,6 +4478,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_69() {
 		if (btn_69 == null) {
 			btn_69 = new JButton("");
+			btn_69.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_69);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_69.setMinimumSize(new Dimension(36, 36));
 			btn_69.setPreferredSize(new Dimension(36, 36));
 			btn_69.setName("btn_69");
@@ -3231,6 +4500,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_79() {
 		if (btn_79 == null) {
 			btn_79 = new JButton("");
+			btn_79.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_79);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_79.setMinimumSize(new Dimension(36, 36));
 			btn_79.setPreferredSize(new Dimension(36, 36));
 			btn_79.setName("btn_79");
@@ -3240,6 +4522,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_89() {
 		if (btn_89 == null) {
 			btn_89 = new JButton("");
+			btn_89.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_89);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_89.setMinimumSize(new Dimension(36, 36));
 			btn_89.setPreferredSize(new Dimension(36, 36));
 			btn_89.setName("btn_89");
@@ -3249,6 +4544,19 @@ public class PlayerGUI extends JFrame{
 	private JButton getBtn_99() {
 		if (btn_99 == null) {
 			btn_99 = new JButton("");
+			btn_99.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						GUIControler.attackOponent(btn_99);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
 			btn_99.setMinimumSize(new Dimension(36, 36));
 			btn_99.setPreferredSize(new Dimension(36, 36));
 			btn_99.setName("btn_99");

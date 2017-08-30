@@ -7,6 +7,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintStream;
+import java.net.Socket;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
@@ -14,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import main.Move;
 import main.Player;
 import main.Position;
 import main.Ship;
@@ -37,11 +43,20 @@ public class GUIControler {
 	private static Color defaultFieldColor = new Color(15, 94, 156);
 	private static Color waterHitColor = new Color(0, 51, 51);
 	private static Color shipHitColor = new Color(204, 102, 0);
-	
+	private static Color shipDestColor = new Color(255, 0, 0);
+static 	BufferedReader inStreamFromClientm = null;
+	static PrintStream outStreamToClientm = null;
+	static ObjectInputStream inputStreamm=null;
+	static ObjectOutputStream outputStreamm=null;
+	static Socket communicationSocketm = null;
+	static boolean end = false;
+	public static boolean ignoreEvents = false;
+	public static boolean begining=true;
 	/**
 	 * Launch the application.
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -58,17 +73,33 @@ public class GUIControler {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					startingFrame = new NewGameGUI();
-					startingFrame.setVisible(true);
-					startingFrame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
+		
+			
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {int port = 5533;
+					if(args.length >0)
+						port = Integer.parseInt(args[0]);
+					
+					communicationSocketm = new Socket("localhost",port);
+				
+				outStreamToClientm = new PrintStream(communicationSocketm.getOutputStream());
+				inStreamFromClientm = new BufferedReader(new InputStreamReader(communicationSocketm.getInputStream()));
+				
+				outputStreamm= new ObjectOutputStream(communicationSocketm.getOutputStream());
+				inputStreamm = new ObjectInputStream(communicationSocketm.getInputStream());
+				     startingFrame = new NewGameGUI();
+						startingFrame.setVisible(true);
+						startingFrame.setLocationRelativeTo(null);
+						
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
-			}
-		});
+			});
+
+			
 	}
 	
 	//method for exit dialog
@@ -139,16 +170,23 @@ public class GUIControler {
 		return text;
 	}
 
-	public static void readyForTheGame() {
+	public static void readyForTheGame() throws IOException, ClassNotFoundException {
 		frame.setSize(810, 475);		
 		consoleMessage("•••The game has started!•••");
 		thisPlayer.setStartingPosition(playerShips);
+		outputStreamm.writeObject(thisPlayer);
 		gameHasStarted = true;
+		
+		
 	}
 	
 	public static void errorMessage(String message) {
 		JOptionPane.showMessageDialog(startingFrame.getContentPane(),
 			message, "Error", JOptionPane.ERROR_MESSAGE);	
+	}
+	public static void notificationMessage(String message) {
+	JOptionPane.showMessageDialog(startingFrame.getContentPane(),
+			message, "Notification !", JOptionPane.ERROR_MESSAGE);	
 	}
 
 	public static void populateArrayOfPositions(LinkedList<JButton> listOfButtons) {
@@ -260,7 +298,11 @@ public class GUIControler {
  		}
 	}	
 	
-	public static void attackOponent(JButton btn){
+	public static void attackOponent(JButton btn) throws IOException, ClassNotFoundException{
+		/*if (ignoreEvents){
+			errorMessage("Not your move!!!");
+			return;
+		}*/
 		for (Position position : enemyTerritory) {
 			if(position.getField() == btn){
 				if(position.getField().getBackground().equals(shipHitColor) || position.getField().getBackground().equals(waterHitColor)){
@@ -272,17 +314,145 @@ public class GUIControler {
 		}
 		for (Position position : enemyTerritory) {
 			if(position.getField() == btn){
-				if(position.isHit()){
+				
+				/*if(begining==true){
+					String first=inStreamFromClientm.readLine();
+				    begining=false;
+				if(first.startsWith("SEC")){
+					errorMessage("You play second!!!");
+					waitMove();
+					return;
+					}
+				}*/
+				Move m=new Move(position);
+				outputStreamm.writeObject(m);
+                String response=inStreamFromClientm.readLine();
+				
+				if(response.startsWith("HIT")){
 					position.getField().setBackground(shipHitColor);
-				}else{
-					position.getField().setBackground(waterHitColor);
+					consoleMessage("Hit!!!");
+					
+					
 				}
-				break;
+				if(response.startsWith("NOTH"))
+				{
+					
+					String response2=inStreamFromClientm.readLine();
+					String response3=inStreamFromClientm.readLine();
+					position.getField().setBackground(waterHitColor);
+					notificationMessage("Missed! Now wait!!");
+					waitMove();
+					return;
+				}
+				String response2=inStreamFromClientm.readLine();
+				
+				if(response2.startsWith("DEST")){
+					LinkedList<Move> destroyedShip=new LinkedList<Move>();
+					boolean done=false;
+					while(!done){
+					Object ob = inputStreamm.readObject();
+					Move move=(Move) ob;
+					destroyedShip.add(move);
+					String shipEnd=inStreamFromClientm.readLine();
+					if(shipEnd.startsWith("DA"))done=true;
+					}
+					
+					for(Position p:enemyTerritory){
+						for(Move mo:destroyedShip){
+						if(p.getColumn()==mo.getIndexKolona()&&p.getRow()==mo.getIndexRed())
+					p.getField().setBackground(shipDestColor);
+						}
+					}
+					consoleMessage("Ship destroyed!!!");
+					notificationMessage("Destroyed!!!");
+				}
+					String response3=inStreamFromClientm.readLine();
+					if(response.startsWith("END")){
+						notificationMessage("END ! YOU HAVE WON !!");
+						communicationSocketm.close();
+						System.exit(0);
+					}
 			}
 		}
 		
 	}
 	
+	static void waitMove() throws ClassNotFoundException, IOException {
+		//disable buttons
+		//ignoreEvents = true;
+	    boolean wait=true;
+		while(wait){
+		Object oo = inputStreamm.readObject();
+		Move move=(Move) oo;
+		Position p=getTargetedPosition(move);
+		String res=inStreamFromClientm.readLine();
+		
+		if(res.startsWith("HIT")){
+			
+			
+			p.getField().setBackground(shipHitColor);
+			notificationMessage("Enemy hit!!!");
+			
+			
+			
+		}
+		if(res.startsWith("NOTH"))
+		{
+			String response2=inStreamFromClientm.readLine();
+			String response3=inStreamFromClientm.readLine();
+			
+			p.getField().setBackground(waterHitColor);
+			
+			notificationMessage("Miss!! Your turn!");
+			wait=false;
+			return;
+		}
+		String response2=inStreamFromClientm.readLine();
+		
+		if(response2.startsWith("DEST")){
+		
+			/*Object ob = inputStreamm.readObject();
+			Ship ship=(Ship) ob;
+			*/
+			Ship ship=destroyedShip(move);
+			
+			for(Position pos:ship.positions){
+			pos.getField().setBackground(shipDestColor);
+			}
+			notificationMessage("Destroyed!!!");
+			consoleMessage("Ship destroyed!!!");
+		}
+			String response3=inStreamFromClientm.readLine();
+			if(response3.startsWith("END")){
+				notificationMessage("END ! YOU HAVE LOST !!");
+				communicationSocketm.close();
+				System.exit(0);
+			}
+		}
+		//enable all buttons
+		// ignoreEvents = false;
+	}
+
+	private static Ship destroyedShip(Move move) {
+		// TODO Auto-generated method stub
+		for(Ship ship:thisPlayer.startingPosition){
+			for(Position p:ship.positions){
+				if(p.getColumn()==move.getIndexKolona()&&p.getRow()==move.getIndexRed())return ship;
+			}
+		}
+		return null;
+	}
+
+	private static Position getTargetedPosition(Move move) {
+		// TODO Auto-generated method stu
+		for(Position p:playerTerritory){ 
+			if(p.getColumn()==move.getIndexKolona()&&p.getRow()==move.getIndexRed())
+				return p;
+		}
+		
+		return null;
+	}
+
 	public static int returnSizeOfShip(String shipType) {
 		return Integer.parseInt((shipType.split("[()]"))[1]);
 	}

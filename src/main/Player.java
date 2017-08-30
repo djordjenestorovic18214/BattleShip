@@ -1,10 +1,11 @@
 package main;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Player {
+public class Player implements Serializable{
 	private String name;
-	private LinkedList<Ship> startingPosition = new LinkedList<Ship>();
+	public LinkedList<Ship> startingPosition = new LinkedList<Ship>();
 //	private int winCounter;
 	
 	public Player(String name) {

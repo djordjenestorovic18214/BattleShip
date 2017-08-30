@@ -1,8 +1,10 @@
 package main;
 
+import java.io.Serializable;
+
 import javax.swing.JButton;
 
-public class Position {
+public class Position implements Serializable {
 	private JButton field;
 	private String name;
 	private boolean busy;
@@ -16,7 +18,9 @@ public class Position {
 		name = button.getName();
 		column = Integer.parseInt(name.substring(4,5));
 		if(button.getName().substring(3,4).contains("_"))
-			row = Integer.parseInt(button.getName().substring(4,5));
+			{row = Integer.parseInt(button.getName().substring(4,5));
+		column = Integer.parseInt(name.substring(5,6));
+			}
 		else
 			row = Integer.parseInt(button.getName().substring(3,4));
 		hit = false;

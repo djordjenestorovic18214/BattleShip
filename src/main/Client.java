@@ -16,11 +16,11 @@ public class Client implements Runnable{
 	
 	public static void main(String[] args) {
 		try {
-			int port = 7989;
+			int port = 5533;
 			if(args.length >0)
 				port = Integer.parseInt(args[0]);
 			
-				communicationSocket = new Socket("localhost",port);
+			communicationSocket = new Socket("localhost",port);
 		console = new BufferedReader(new InputStreamReader(System.in));
 		outStreamToServer = new PrintStream(communicationSocket.getOutputStream());
 		inStreamFromServer = new BufferedReader(new InputStreamReader(communicationSocket.getInputStream()));
