@@ -15,9 +15,12 @@ import java.net.Socket;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
 
 import main.Move;
 import main.Player;
@@ -26,7 +29,7 @@ import main.Ship;
 
 public class GUIControler {
 	
-	private static NewGameGUI startingFrame;
+	public static NewGameGUI startingFrame;
 	private static PlayerGUI frame;
 	//list of positions where are players boats places 
 	private static LinkedList<Position> playerTerritory = new LinkedList<Position>();
@@ -52,6 +55,7 @@ static 	BufferedReader inStreamFromClientm = null;
 	static boolean end = false;
 	public static boolean ignoreEvents = false;
 	public static boolean begining=true;
+	
 	/**
 	 * Launch the application.
 	 * @throws IOException 
@@ -185,8 +189,21 @@ static 	BufferedReader inStreamFromClientm = null;
 			message, "Error", JOptionPane.ERROR_MESSAGE);	
 	}
 	public static void notificationMessage(String message) {
-	JOptionPane.showMessageDialog(startingFrame.getContentPane(),
-			message, "Notification !", JOptionPane.ERROR_MESSAGE);	
+	 JOptionPane.showMessageDialog(startingFrame.getContentPane(),
+			message, "Notification !", JOptionPane.ERROR_MESSAGE);
+	
+		
+		      
+	}
+	public static void notMessage(String message) {
+		JOptionPane pane = new JOptionPane(message,
+		          JOptionPane.INFORMATION_MESSAGE);
+		      JDialog dialog = pane.createDialog(startingFrame.getContentPane(), "Notification");
+		      dialog.setVisible(true);
+		     
+		   
+		      
+		
 	}
 
 	public static void populateArrayOfPositions(LinkedList<JButton> listOfButtons) {
@@ -299,35 +316,30 @@ static 	BufferedReader inStreamFromClientm = null;
 	}	
 	
 	public static void attackOponent(JButton btn) throws IOException, ClassNotFoundException{
-		/*if (ignoreEvents){
-			errorMessage("Not your move!!!");
-			return;
-		}*/
+		
+		
 		for (Position position : enemyTerritory) {
 			if(position.getField() == btn){
-				if(position.getField().getBackground().equals(shipHitColor) || position.getField().getBackground().equals(waterHitColor)){
+				if(position.getField().getBackground().equals(shipHitColor) || position.getField().getBackground().equals(waterHitColor)||position.getField().getBackground().equals(shipDestColor)){
 					errorMessage("You already hit that field!");
 				}else{
 					break;
 				}
 			}
 		}
+		
 		for (Position position : enemyTerritory) {
 			if(position.getField() == btn){
 				
-				/*if(begining==true){
-					String first=inStreamFromClientm.readLine();
-				    begining=false;
-				if(first.startsWith("SEC")){
-					errorMessage("You play second!!!");
-					waitMove();
-					return;
-					}
-				}*/
-				Move m=new Move(position);
-				outputStreamm.writeObject(m);
-                String response=inStreamFromClientm.readLine();
+		
 				
+				Move m=new Move(position);
+				
+				outputStreamm.writeObject(m);
+				outputStreamm.flush();
+				
+                String response=inStreamFromClientm.readLine();
+                
 				if(response.startsWith("HIT")){
 					position.getField().setBackground(shipHitColor);
 					consoleMessage("Hit!!!");
@@ -347,40 +359,40 @@ static 	BufferedReader inStreamFromClientm = null;
 				String response2=inStreamFromClientm.readLine();
 				
 				if(response2.startsWith("DEST")){
-					LinkedList<Move> destroyedShip=new LinkedList<Move>();
-					boolean done=false;
-					while(!done){
+					outStreamToClientm.println("receive");
+					outStreamToClientm.flush();
 					Object ob = inputStreamm.readObject();
-					Move move=(Move) ob;
-					destroyedShip.add(move);
-					String shipEnd=inStreamFromClientm.readLine();
-					if(shipEnd.startsWith("DA"))done=true;
+					Ship ship=(Ship) ob;
+				
+					
+					for(Position p:ship.positions){
+						for(Position po:enemyTerritory){
+							if(po.getColumn()==p.getColumn()&&po.getRow()==p.getRow())
+						po.getField().setBackground(shipDestColor);
+					}
 					}
 					
-					for(Position p:enemyTerritory){
-						for(Move mo:destroyedShip){
-						if(p.getColumn()==mo.getIndexKolona()&&p.getRow()==mo.getIndexRed())
-					p.getField().setBackground(shipDestColor);
-						}
-					}
 					consoleMessage("Ship destroyed!!!");
 					notificationMessage("Destroyed!!!");
 				}
 					String response3=inStreamFromClientm.readLine();
-					if(response.startsWith("END")){
+					
+					if(response3.startsWith("END")){
 						notificationMessage("END ! YOU HAVE WON !!");
 						communicationSocketm.close();
 						System.exit(0);
 					}
+					return;
+				
 			}
 		}
 		
 	}
 	
 	static void waitMove() throws ClassNotFoundException, IOException {
-		//disable buttons
-		//ignoreEvents = true;
+		
 	    boolean wait=true;
+	   
 		while(wait){
 		Object oo = inputStreamm.readObject();
 		Move move=(Move) oo;
@@ -389,9 +401,9 @@ static 	BufferedReader inStreamFromClientm = null;
 		
 		if(res.startsWith("HIT")){
 			
-			
+			  
 			p.getField().setBackground(shipHitColor);
-			notificationMessage("Enemy hit!!!");
+			notMessage("Hit");
 			
 			
 			
@@ -403,7 +415,7 @@ static 	BufferedReader inStreamFromClientm = null;
 			
 			p.getField().setBackground(waterHitColor);
 			
-			notificationMessage("Miss!! Your turn!");
+			notMessage("Miss!! Your turn!");
 			wait=false;
 			return;
 		}
@@ -411,9 +423,7 @@ static 	BufferedReader inStreamFromClientm = null;
 		
 		if(response2.startsWith("DEST")){
 		
-			/*Object ob = inputStreamm.readObject();
-			Ship ship=(Ship) ob;
-			*/
+			
 			Ship ship=destroyedShip(move);
 			
 			for(Position pos:ship.positions){
@@ -429,9 +439,13 @@ static 	BufferedReader inStreamFromClientm = null;
 				System.exit(0);
 			}
 		}
+		}
+		
 		//enable all buttons
 		// ignoreEvents = false;
-	}
+	
+
+	
 
 	private static Ship destroyedShip(Move move) {
 		// TODO Auto-generated method stub
