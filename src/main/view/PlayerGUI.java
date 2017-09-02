@@ -1733,23 +1733,30 @@ public class PlayerGUI extends JFrame{
 			btnReady = new JButton("READY");
 			btnReady.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					panelEast.setVisible(false);
-					lblPlayerName.setText(txtName.getText());
-					scrollPane.setSize(200, 70);
-					try {
-						GUIControler.readyForTheGame();
-						String first=GUIControler.inStreamFromClientm.readLine();
-					    
-					if(first.startsWith("SEC")){
-						GUIControler.notificationMessage("You play second! Wait !");
-						GUIControler.waitMove();
-					}
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					if(cbShipSize.getItemCount()==1){
+						panelEast.setVisible(false);
+						lblPlayerName.setText(txtName.getText());
+						scrollPane.setSize(200, 70);
+						try {
+							GUIControler.readyForTheGame();
+							String first=GUIControler.inStreamFromClientm.readLine();
+						    String oponentName = first.split("_")[1];
+							
+						    lblOpponentName.setText(oponentName);
+						    
+						if(first.startsWith("SEC")){
+							GUIControler.notificationMessage("You play second! Wait !");
+							GUIControler.waitMove();
+						}
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}else{
+						GUIControler.notificationMessageWithTimer("You haven't placed all of your ships!", 2000);
 					}
 				}
 			});

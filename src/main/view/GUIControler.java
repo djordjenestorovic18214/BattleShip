@@ -13,6 +13,9 @@ import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.util.LinkedList;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Callable;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -189,12 +192,28 @@ static 	BufferedReader inStreamFromClientm = null;
 			message, "Error", JOptionPane.ERROR_MESSAGE);	
 	}
 	public static void notificationMessage(String message) {
-	 JOptionPane.showMessageDialog(startingFrame.getContentPane(),
-			message, "Notification !", JOptionPane.ERROR_MESSAGE);
-	
-		
-		      
+		JOptionPane.showMessageDialog(startingFrame.getContentPane(),
+			message, "Notification !", JOptionPane.ERROR_MESSAGE);      
 	}
+	public static void notificationMessageWithTimer(String message,int seconds){
+		JOptionPane opt = new JOptionPane(message, JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, null, new Object[]{}); // no buttons
+		final JDialog dlg = opt.createDialog("Error");
+		new Thread(new Runnable(){
+			public void run(){
+				try
+				{
+					Thread.sleep(seconds);
+		              dlg.dispose();
+		        }
+				catch ( Throwable th )
+		        {
+					th.getMessage();
+		        }
+				}
+			}).start();
+		  dlg.setVisible(true);	
+		  }
+	
 	public static void notMessage(String message) {
 		JOptionPane pane = new JOptionPane(message,
 		          JOptionPane.INFORMATION_MESSAGE);
@@ -232,6 +251,11 @@ static 	BufferedReader inStreamFromClientm = null;
 		boolean outOfTerritory = true;
 		PlayerGUI.setNextShipButtonEnable(false);
 		Position selectedField = new Position(btn);
+		
+		if(selectedField.getField().getBackground().equals(defaultFieldColor)==false){
+			
+			return;
+		}
 		
 		for (Position pos : playerTerritory) {
 			if(pos.getField() == btn)
