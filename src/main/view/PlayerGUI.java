@@ -132,7 +132,7 @@ public class PlayerGUI extends JFrame{
 	private JMenuItem mntmAboutUs;
 	private JLabel lblPlayerName;
 	private JLabel lblVersus;
-	private JLabel lblOpponentName;
+	static JLabel lblOpponentName;
 	private JButton btn_11;
 	private JButton btn_12;
 	private JButton btn_13;
@@ -1739,12 +1739,14 @@ public class PlayerGUI extends JFrame{
 						scrollPane.setSize(200, 70);
 						try {
 							GUIControler.readyForTheGame();
-							String first=GUIControler.inStreamFromClientm.readLine();
-						    String oponentName = first.split("_")[1];
+							GUIControler.notificationMessage("Game has started! ");
 							
-						    lblOpponentName.setText(oponentName);
+							
+						   // String oponentName = first.split("_")[1];
+							
+						  //  lblOpponentName.setText(oponentName);
 						    
-						if(first.startsWith("SEC")){
+						if(GUIControler.connect.startsWith("SEC")){
 							GUIControler.notificationMessage("You play second! Wait !");
 							GUIControler.waitMove();
 						}

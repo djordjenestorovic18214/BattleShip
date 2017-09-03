@@ -16,6 +16,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -30,7 +31,7 @@ public class NewGameGUI extends JFrame {
 	private JButton btnFindOpponent;
 	private JLabel lblStatus;
 	private static JTextField txtStatus;
-	private JButton btnStartGame;
+	public static JButton btnStartGame;
 
 	/**
 	 * Create the frame.
@@ -101,7 +102,12 @@ public class NewGameGUI extends JFrame {
 			btnFindOpponent = new JButton("Find opponent");
 			btnFindOpponent.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-						GUIControler.findOpponent(txtPlayerName.getText());
+						try {
+							GUIControler.findOpponent(txtPlayerName.getText());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 				}
 			});
 			btnFindOpponent.setFont(new Font("Monospaced", Font.BOLD, 13));
@@ -138,6 +144,6 @@ public class NewGameGUI extends JFrame {
 	}
 	
 	static void changeStatusText(String status) {
-		txtStatus.setText("Searching...");
+		txtStatus.setText(status);
 	}
 }

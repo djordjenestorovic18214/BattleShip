@@ -12,6 +12,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -58,6 +59,7 @@ static 	BufferedReader inStreamFromClientm = null;
 	static boolean end = false;
 	public static boolean ignoreEvents = false;
 	public static boolean begining=true;
+	public static String connect;
 	
 	/**
 	 * Launch the application.
@@ -84,7 +86,7 @@ static 	BufferedReader inStreamFromClientm = null;
 			
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
-					try {int port = 5533;
+					try {/*int port = 5533;
 					if(args.length >0)
 						port = Integer.parseInt(args[0]);
 					
@@ -95,8 +97,10 @@ static 	BufferedReader inStreamFromClientm = null;
 				
 				outputStreamm= new ObjectOutputStream(communicationSocketm.getOutputStream());
 				inputStreamm = new ObjectInputStream(communicationSocketm.getInputStream());
+				*/
 				     startingFrame = new NewGameGUI();
 						startingFrame.setVisible(true);
+						NewGameGUI.btnStartGame.setEnabled(false);
 						startingFrame.setLocationRelativeTo(null);
 						
 						
@@ -130,10 +134,24 @@ static 	BufferedReader inStreamFromClientm = null;
 		frame.console.setText("•••" + thisPlayer.getName() + " joined the game!•••\n•Place your ships in battle area!");
 	}
 	
-	public static void findOpponent(String playerName) {
+	public static void findOpponent(String playerName) throws IOException {
 		if(!playerName.isEmpty() && playerName != null) {
-			NewGameGUI.changeStatusText(playerName);
+			NewGameGUI.changeStatusText("Searching");
 			makeConnection();
+			 connect=inStreamFromClientm.readLine();
+			if(connect.startsWith("FIRST")){
+				notificationMessage("Wait for opponent!!");
+				String waitOpponent=inStreamFromClientm.readLine();
+				if(waitOpponent.startsWith("NOW")){
+				NewGameGUI.changeStatusText("Opponent found!");
+				NewGameGUI.btnStartGame.setEnabled(true);
+				}
+			}
+			else{ 
+				NewGameGUI.changeStatusText("Opponent found!");
+				NewGameGUI.btnStartGame.setEnabled(true);
+			}
+			
 		}
 		else if(playerName.length() > 12) {
 			GUIControler.errorMessage("Your name is too long!");
@@ -143,6 +161,25 @@ static 	BufferedReader inStreamFromClientm = null;
 	}
 	
 	private static void makeConnection() {
+		int port = 5533;
+		//if(args.length >0)
+		//	port = Integer.parseInt(args[0]);
+		
+		try {
+			communicationSocketm = new Socket("localhost",port);
+
+outStreamToClientm = new PrintStream(communicationSocketm.getOutputStream());
+inStreamFromClientm = new BufferedReader(new InputStreamReader(communicationSocketm.getInputStream()));
+
+outputStreamm= new ObjectOutputStream(communicationSocketm.getOutputStream());
+inputStreamm = new ObjectInputStream(communicationSocketm.getInputStream());
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -182,6 +219,20 @@ static 	BufferedReader inStreamFromClientm = null;
 		consoleMessage("•••The game has started!•••");
 		thisPlayer.setStartingPosition(playerShips);
 		outputStreamm.writeObject(thisPlayer);
+		outStreamToClientm.println("Ready");
+		String opponentName = null;
+		String ready=inStreamFromClientm.readLine();
+		if(ready.startsWith("Not")){
+			notificationMessage("Game will begin when opponent is ready!");
+			 opponentName=inStreamFromClientm.readLine();
+			//if(ready2.startsWith("Ready"))notificationMessage("Game has started! ");
+			
+			
+		}
+		if(ready.startsWith("Ready")){
+			 opponentName=inStreamFromClientm.readLine();
+		}
+		PlayerGUI.lblOpponentName.setText(opponentName);
 		gameHasStarted = true;
 		
 		
@@ -427,7 +478,7 @@ static 	BufferedReader inStreamFromClientm = null;
 			
 			  
 			p.getField().setBackground(shipHitColor);
-			notMessage("Hit");
+			notificationMessageWithTimer("Hit",1000);
 			
 			
 			
