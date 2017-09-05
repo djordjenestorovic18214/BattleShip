@@ -48,10 +48,10 @@ public class GUIControler {
 	private static Color battleshipColor = new Color(0, 0, 0);
 	private static Color selectedFieldColor = new Color(242, 242, 53);
 	private static Color defaultFieldColor = new Color(15, 94, 156);
-	private static Color waterHitColor = new Color(0, 51, 51);
+	private static Color missedColor = new Color(105,105,105);
 	private static Color shipHitColor = new Color(204, 102, 0);
 	private static Color shipDestColor = new Color(255, 0, 0);
-static 	BufferedReader inStreamFromClientm = null;
+	static 	BufferedReader inStreamFromClientm = null;
 	static PrintStream outStreamToClientm = null;
 	static ObjectInputStream inputStreamm=null;
 	static ObjectOutputStream outputStreamm=null;
@@ -136,7 +136,7 @@ static 	BufferedReader inStreamFromClientm = null;
 	
 	public static void findOpponent(String playerName) throws IOException {
 		if(!playerName.isEmpty() && playerName != null) {
-			NewGameGUI.changeStatusText("Searching");
+			NewGameGUI.changeStatusText("Searching...");
 			makeConnection();
 			 connect=inStreamFromClientm.readLine();
 			if(connect.startsWith("FIRST")){
@@ -168,11 +168,11 @@ static 	BufferedReader inStreamFromClientm = null;
 		try {
 			communicationSocketm = new Socket("localhost",port);
 
-outStreamToClientm = new PrintStream(communicationSocketm.getOutputStream());
-inStreamFromClientm = new BufferedReader(new InputStreamReader(communicationSocketm.getInputStream()));
-
-outputStreamm= new ObjectOutputStream(communicationSocketm.getOutputStream());
-inputStreamm = new ObjectInputStream(communicationSocketm.getInputStream());
+			outStreamToClientm = new PrintStream(communicationSocketm.getOutputStream());
+			inStreamFromClientm = new BufferedReader(new InputStreamReader(communicationSocketm.getInputStream()));
+			
+			outputStreamm= new ObjectOutputStream(communicationSocketm.getOutputStream());
+			inputStreamm = new ObjectInputStream(communicationSocketm.getInputStream());
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -294,7 +294,7 @@ inputStreamm = new ObjectInputStream(communicationSocketm.getInputStream());
 	public static void activateButton(JButton btn, boolean isVertical, String shipType, int numOfShipsNotPlaced) {
 		if(gameHasStarted) return;
 		if(shipType.equals("Choose ship")) {
-			if(numOfShipsNotPlaced == 1) errorMessage("You places all your ships. Click Ready to start the game!");
+			if(numOfShipsNotPlaced == 1) errorMessage("You placed all your ships. Click Ready to start the game!");
 			else errorMessage("You must choose type of ship!");
 			return;
 		}
@@ -395,7 +395,7 @@ inputStreamm = new ObjectInputStream(communicationSocketm.getInputStream());
 		
 		for (Position position : enemyTerritory) {
 			if(position.getField() == btn){
-				if(position.getField().getBackground().equals(shipHitColor) || position.getField().getBackground().equals(waterHitColor)||position.getField().getBackground().equals(shipDestColor)){
+				if(position.getField().getBackground().equals(shipHitColor) || position.getField().getBackground().equals(missedColor)||position.getField().getBackground().equals(shipDestColor)){
 					errorMessage("You already hit that field!");
 				}else{
 					break;
@@ -417,7 +417,7 @@ inputStreamm = new ObjectInputStream(communicationSocketm.getInputStream());
                 
 				if(response.startsWith("HIT")){
 					position.getField().setBackground(shipHitColor);
-					consoleMessage("Hit!!!");
+					consoleMessage("Good shot!!!");
 					
 					
 				}
@@ -426,8 +426,8 @@ inputStreamm = new ObjectInputStream(communicationSocketm.getInputStream());
 					
 					String response2=inStreamFromClientm.readLine();
 					String response3=inStreamFromClientm.readLine();
-					position.getField().setBackground(waterHitColor);
-					notificationMessage("Missed! Now wait!!");
+					position.getField().setBackground(missedColor);
+					notificationMessage("You missed! Wait for your opponent's turn!");
 					waitMove();
 					return;
 				}
@@ -447,8 +447,8 @@ inputStreamm = new ObjectInputStream(communicationSocketm.getInputStream());
 					}
 					}
 					
-					consoleMessage("Ship destroyed!!!");
-					notificationMessage("Destroyed!!!");
+					consoleMessage("You destroyed opponents ship!");
+					notificationMessage("You destroyed opponents ship!");
 				}
 					String response3=inStreamFromClientm.readLine();
 					
@@ -478,7 +478,7 @@ inputStreamm = new ObjectInputStream(communicationSocketm.getInputStream());
 			
 			  
 			p.getField().setBackground(shipHitColor);
-			notificationMessageWithTimer("Hit",1000);
+			notificationMessageWithTimer("Opponent hit you!",1000);
 			
 			
 			
@@ -488,9 +488,9 @@ inputStreamm = new ObjectInputStream(communicationSocketm.getInputStream());
 			String response2=inStreamFromClientm.readLine();
 			String response3=inStreamFromClientm.readLine();
 			
-			p.getField().setBackground(waterHitColor);
+			p.getField().setBackground(missedColor);
 			
-			notMessage("Miss!! Your turn!");
+			notMessage("Opponent missed! Now it's your turn!");
 			wait=false;
 			return;
 		}
@@ -504,8 +504,8 @@ inputStreamm = new ObjectInputStream(communicationSocketm.getInputStream());
 			for(Position pos:ship.positions){
 			pos.getField().setBackground(shipDestColor);
 			}
-			notificationMessage("Destroyed!!!");
-			consoleMessage("Ship destroyed!!!");
+			notificationMessage("Your ship is destroyed!");
+			consoleMessage("Your ship is destroyed!");
 		}
 			String response3=inStreamFromClientm.readLine();
 			if(response3.startsWith("END")){
@@ -523,7 +523,6 @@ inputStreamm = new ObjectInputStream(communicationSocketm.getInputStream());
 	
 
 	private static Ship destroyedShip(Move move) {
-		// TODO Auto-generated method stub
 		for(Ship ship:thisPlayer.startingPosition){
 			for(Position p:ship.positions){
 				if(p.getColumn()==move.getIndexKolona()&&p.getRow()==move.getIndexRed())return ship;
@@ -533,7 +532,6 @@ inputStreamm = new ObjectInputStream(communicationSocketm.getInputStream());
 	}
 
 	private static Position getTargetedPosition(Move move) {
-		// TODO Auto-generated method stu
 		for(Position p:playerTerritory){ 
 			if(p.getColumn()==move.getIndexKolona()&&p.getRow()==move.getIndexRed())
 				return p;
