@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 public class Position implements Serializable {
 	private JButton field;
 	private String name;

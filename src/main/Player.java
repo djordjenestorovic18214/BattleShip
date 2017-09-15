@@ -3,6 +3,7 @@ package main;
 import java.io.Serializable;
 import java.util.LinkedList;
 
+@SuppressWarnings("serial")
 public class Player implements Serializable{
 	private String name;
 	public LinkedList<Ship> startingPosition = new LinkedList<Ship>();

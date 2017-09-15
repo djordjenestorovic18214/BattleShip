@@ -3,6 +3,7 @@ package main;
 import java.io.Serializable;
 import java.util.LinkedList;
 
+@SuppressWarnings("serial")
 public class Ship  implements Serializable {
 	private int size;
 //	private boolean isVertical;

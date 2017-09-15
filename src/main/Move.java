@@ -2,6 +2,7 @@ package main;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Move implements Serializable {
 	private Player player;
 	private int indexRed;
