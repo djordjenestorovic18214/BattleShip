@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintStream;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.LinkedList;
@@ -142,9 +143,9 @@ public class GUIControler {
 	private static void makeConnection() {
 		int port = 5533;
 		
-
+//"172.20.10.2"
 		try {
-			communicationSocketm = new Socket("172.20.10.2", port);
+			communicationSocketm = new Socket("localhost", port);
 
 			outStreamToClientm = new PrintStream(communicationSocketm.getOutputStream());
 			inStreamFromClientm = new BufferedReader(new InputStreamReader(communicationSocketm.getInputStream()));
@@ -157,6 +158,11 @@ public class GUIControler {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			notificationMessageWithTimer("Server is down or opponent quit !!!",1000);
+			System.exit(0);
+			
+			
+			
 		}
 
 	}
@@ -188,7 +194,9 @@ public class GUIControler {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
 		}
+		
 		return text;
 	}
 
@@ -369,71 +377,78 @@ public class GUIControler {
 
 	public static void attackOponent(JButton btn) throws IOException, ClassNotFoundException {
 
-		for (Position position : enemyTerritory) {
-			if (position.getField() == btn) {
-				if (position.getField().getBackground().equals(shipHitColor)
-						|| position.getField().getBackground().equals(missedColor)
-						|| position.getField().getBackground().equals(shipDestColor)) {
-					errorMessage("You already hit that field!");
-				} else {
-					break;
-				}
-			}
-		}
-
-		for (Position position : enemyTerritory) {
-			if (position.getField() == btn) {
-
-				Move m = new Move(position);
-
-				outputStreamm.writeObject(m);
-				outputStreamm.flush();
-
-				String response = inStreamFromClientm.readLine();
-
-				if (response.startsWith("HIT")) {
-					position.getField().setBackground(shipHitColor);
-					consoleMessage("Good shot!!!");
-
-				}
-				if (response.startsWith("NOTH")) {
-
-					String response2 = inStreamFromClientm.readLine();
-					String response3 = inStreamFromClientm.readLine();
-					position.getField().setBackground(missedColor);
-					notificationMessageWithTimer("You missed! Wait for your opponent's turn!",500);
-					consoleMessage("You missed! Wait for your opponent's turn!");
-					waitMove();
-					return;
-				}
-				String response2 = inStreamFromClientm.readLine();
-
-				if (response2.startsWith("DEST")) {
-					outStreamToClientm.println("receive");
-					outStreamToClientm.flush();
-					Object ob = inputStreamm.readObject();
-					Ship ship = (Ship) ob;
-
-					for (Position p : ship.positions) {
-						for (Position po : enemyTerritory) {
-							if (po.getColumn() == p.getColumn() && po.getRow() == p.getRow())
-								po.getField().setBackground(shipDestColor);
-						}
+		try {
+			for (Position position : enemyTerritory) {
+				if (position.getField() == btn) {
+					if (position.getField().getBackground().equals(shipHitColor)
+							|| position.getField().getBackground().equals(missedColor)
+							|| position.getField().getBackground().equals(shipDestColor)) {
+						errorMessage("You already hit that field!");
+					} else {
+						break;
 					}
-
-					consoleMessage("You destroyed opponents ship!");
-					notificationMessageWithTimer("You destroyed opponents ship!",500);
 				}
-				String response3 = inStreamFromClientm.readLine();
-
-				if (response3.startsWith("END")) {
-					notificationMessage("END ! YOU HAVE WON !!");
-					communicationSocketm.close();
-					System.exit(0);
-				}
-				return;
-
 			}
+
+			for (Position position : enemyTerritory) {
+				if (position.getField() == btn) {
+
+					Move m = new Move(position);
+
+					outputStreamm.writeObject(m);
+					outputStreamm.flush();
+
+					String response = inStreamFromClientm.readLine();
+
+					if (response.startsWith("HIT")) {
+						position.getField().setBackground(shipHitColor);
+						consoleMessage("Good shot!!!");
+
+					}
+					if (response.startsWith("NOTH")) {
+
+						String response2 = inStreamFromClientm.readLine();
+						String response3 = inStreamFromClientm.readLine();
+						position.getField().setBackground(missedColor);
+						notificationMessageWithTimer("You missed! Wait for your opponent's turn!",500);
+						consoleMessage("You missed! Wait for your opponent's turn!");
+						waitMove();
+						return;
+					}
+					String response2 = inStreamFromClientm.readLine();
+
+					if (response2.startsWith("DEST")) {
+						outStreamToClientm.println("receive");
+						outStreamToClientm.flush();
+						Object ob = inputStreamm.readObject();
+						Ship ship = (Ship) ob;
+
+						for (Position p : ship.positions) {
+							for (Position po : enemyTerritory) {
+								if (po.getColumn() == p.getColumn() && po.getRow() == p.getRow())
+									po.getField().setBackground(shipDestColor);
+							}
+						}
+
+						consoleMessage("You destroyed opponents ship!");
+						notificationMessageWithTimer("You destroyed opponents ship!",500);
+					}
+					String response3 = inStreamFromClientm.readLine();
+
+					if (response3.startsWith("END")) {
+						notificationMessage("END ! YOU HAVE WON !!");
+						communicationSocketm.close();
+						System.exit(0);
+					}
+					return;
+
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			notificationMessageWithTimer("Server is down or opponent quit !!!",1000);
+			System.exit(0);
 		}
 
 	}
