@@ -1739,7 +1739,7 @@ public class PlayerGUI extends JFrame{
 						scrollPane.setSize(200, 70);
 						try {
 							GUIControler.readyForTheGame();
-							GUIControler.notificationMessage("Game has started! ");
+							GUIControler.notificationMessageWithTimer("Game has started! ",500);
 							
 							
 						   // String oponentName = first.split("_")[1];
@@ -1747,7 +1747,7 @@ public class PlayerGUI extends JFrame{
 						  //  lblOpponentName.setText(oponentName);
 						    
 						if(GUIControler.connect.startsWith("SEC")){
-							GUIControler.notificationMessage("You play second! Wait !");
+							GUIControler.notificationMessageWithTimer("You play second! Wait !",500);
 							GUIControler.waitMove();
 						}
 						} catch (IOException e) {

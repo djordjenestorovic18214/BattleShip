@@ -26,7 +26,7 @@ import main.Player;
 import main.Position;
 import main.Ship;
 
-public class GUIControler extends Thread {
+public class GUIControler {
 
 	public static NewGameGUI startingFrame;
 	private static PlayerGUI frame;
@@ -35,7 +35,6 @@ public class GUIControler extends Thread {
 	private static LinkedList<Position> enemyTerritory = new LinkedList<Position>();
 	// list of players ships
 	private static LinkedList<Ship> playerShips = new LinkedList<Ship>();
-	private static LinkedList<Position> oponentShipsWeAtacked = new LinkedList<Position>();
 	private static Player thisPlayer;
 	private static boolean gameHasStarted = false;
 	private static Color patrolShipColor = new Color(40, 40, 40);
@@ -122,7 +121,7 @@ public class GUIControler extends Thread {
 			makeConnection();
 			connect = inStreamFromClientm.readLine();
 			if (connect.startsWith("FIRST")) {
-				notificationMessage("Wait for opponent!!");
+				notificationMessageWithTimer("Wait for opponent!!",1000);
 				String waitOpponent = inStreamFromClientm.readLine();
 				if (waitOpponent.startsWith("NOW")) {
 					NewGameGUI.changeStatusText("Opponent found!");
@@ -142,11 +141,10 @@ public class GUIControler extends Thread {
 
 	private static void makeConnection() {
 		int port = 5533;
-		// if(args.length >0)
-		// port = Integer.parseInt(args[0]);
+		
 
 		try {
-			communicationSocketm = new Socket("10.1.7.193", port);
+			communicationSocketm = new Socket("172.20.10.2", port);
 
 			outStreamToClientm = new PrintStream(communicationSocketm.getOutputStream());
 			inStreamFromClientm = new BufferedReader(new InputStreamReader(communicationSocketm.getInputStream()));
@@ -203,7 +201,7 @@ public class GUIControler extends Thread {
 		String opponentName = null;
 		String ready = inStreamFromClientm.readLine();
 		if (ready.startsWith("Not")) {
-			notificationMessage("Game will begin when opponent is ready!");
+			notificationMessageWithTimer("Game will begin when opponent is ready!",1000);
 			opponentName = inStreamFromClientm.readLine();
 			// if(ready2.startsWith("Ready"))notificationMessage("Game has
 			// started! ");
@@ -243,12 +241,7 @@ public class GUIControler extends Thread {
 		dlg.setVisible(true);
 	}
 
-	public static void notMessage(String message) {
-		JOptionPane pane = new JOptionPane(message, JOptionPane.INFORMATION_MESSAGE);
-		JDialog dialog = pane.createDialog(startingFrame.getContentPane(), "Notification");
-		dialog.setVisible(true);
-
-	}
+	
 
 	public static void populateArrayOfPositions(LinkedList<JButton> listOfButtons) {
 		for (JButton btn : listOfButtons) {
@@ -408,7 +401,8 @@ public class GUIControler extends Thread {
 					String response2 = inStreamFromClientm.readLine();
 					String response3 = inStreamFromClientm.readLine();
 					position.getField().setBackground(missedColor);
-					notificationMessage("You missed! Wait for your opponent's turn!");
+					notificationMessageWithTimer("You missed! Wait for your opponent's turn!",500);
+					consoleMessage("You missed! Wait for your opponent's turn!");
 					waitMove();
 					return;
 				}
@@ -428,7 +422,7 @@ public class GUIControler extends Thread {
 					}
 
 					consoleMessage("You destroyed opponents ship!");
-					notificationMessage("You destroyed opponents ship!");
+					notificationMessageWithTimer("You destroyed opponents ship!",500);
 				}
 				String response3 = inStreamFromClientm.readLine();
 
@@ -457,7 +451,7 @@ public class GUIControler extends Thread {
 			if (res.startsWith("HIT")) {
 
 				p.getField().setBackground(shipHitColor);
-				notificationMessageWithTimer("Opponent hit you!", 1000);
+				notificationMessageWithTimer("Opponent hit you!", 500);
 
 			}
 			if (res.startsWith("NOTH")) {
@@ -466,7 +460,8 @@ public class GUIControler extends Thread {
 
 				p.getField().setBackground(missedColor);
 
-				notMessage("Opponent missed! Now it's your turn!");
+				notificationMessageWithTimer("Opponent missed! Now it's your turn!",500);
+				consoleMessage("Opponent missed! Now it's your turn!");
 				wait = false;
 				return;
 			}
@@ -479,7 +474,7 @@ public class GUIControler extends Thread {
 				for (Position pos : ship.positions) {
 					pos.getField().setBackground(shipDestColor);
 				}
-				notificationMessage("Your ship is destroyed!");
+				notificationMessageWithTimer("Your ship is destroyed!",500);
 				consoleMessage("Your ship is destroyed!");
 			}
 			String response3 = inStreamFromClientm.readLine();
